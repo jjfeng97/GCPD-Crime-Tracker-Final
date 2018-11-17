@@ -5,7 +5,7 @@ class AssignmentsController < ApplicationController
   def new
     @assignment = Assignment.new
     unless params[:officer_id].nil?
-      @officer    = Officer.find(params[:officer_id])
+      @officer = Officer.find(params[:officer_id])
       @officer_investigations = @officer.assignments.current.map{|a| a.investigation }
     end
 
@@ -19,7 +19,7 @@ class AssignmentsController < ApplicationController
       redirect_to officer_path(@assignment.officer)
 
     else
-      @officer     = Officer.find(params[:assignment][:officer_id])
+      @officer = Officer.find(params[:assignment][:officer_id])
       render action: 'new', locals: { officer: @officer }
     end
   end

@@ -47,17 +47,7 @@ class InvestigationsController < ApplicationController
       end
     end
   end
-
-
-
-
-
-
-
-
-
-
-
+  
 
   private
   def set_investigation

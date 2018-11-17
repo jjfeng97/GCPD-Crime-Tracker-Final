@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
 
   # Authentication routes
-
-
-
+  resources :sessions
+  get 'login', to: 'sessions#new', as: :login
+  get 'logout', to: 'sessions#destroy', as: :logout
 
 
   # Resource routes (maps HTTP verbs to controller actions automatically):
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :units
   resources :investigations
   resources :crimes
+  resources :criminals
 
   # Routes for assignments
   get 'assignments/new', to: 'assignments#new', as: :new_assignment
