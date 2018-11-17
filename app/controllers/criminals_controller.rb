@@ -11,6 +11,7 @@ class CriminalsController < ApplicationController
 
   def show
     @current_suspects = @criminal.suspects.current.chronological
+    @previous_suspects = @criminal.suspects.alphabetical.to_a - @current_suspects
   end
 
   def new
