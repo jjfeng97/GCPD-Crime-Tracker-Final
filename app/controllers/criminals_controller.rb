@@ -6,6 +6,7 @@ class CriminalsController < ApplicationController
   def index
     @felons = Criminal.prior_record.alphabetical.paginate(page: params[:page]).per_page(10)
     @superpowers = Criminal.enhanced.alphabetical.paginate(page: params[:page]).per_page(10)
+    @criminals = Criminal.all.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 
   def show
