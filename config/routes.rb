@@ -24,9 +24,16 @@ Rails.application.routes.draw do
   get 'assignments/new', to: 'assignments#new', as: :new_assignment
   post 'assignments', to: 'assignments#create', as: :assignments
   patch 'assignments/:id/terminate', to: 'assignments#terminate', as: :terminate_assignment
+
+  # Routes for suspects
   get 'suspects/new', to: 'suspects#new', as: :new_suspect
   post 'suspects', to: 'suspects#create', as: :suspects
   patch 'suspects/:id/terminate', to: 'suspects#terminate', as: :terminate_suspect
+
+  # Routes for investigation notes
+  get 'investigation_notes/new', to: 'investigation_notes#new', as: :new_investigation_note
+  post 'investigation_notes', to: 'investigation_notes#create', as: :investigation_notes
+  delete 'investigation_notes/:id', to: 'investigation_notes#destroy', as: :destroy_investigation_note
 
   # Toggle paths
 

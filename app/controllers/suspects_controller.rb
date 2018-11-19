@@ -3,11 +3,6 @@ class SuspectsController < ApplicationController
 
 
   def new
-    # @assignment = Assignment.new
-    # unless params[:officer_id].nil?
-    #   @officer = Officer.find(params[:officer_id])
-    #   @officer_investigations = @officer.assignments.current.map{|a| a.investigation }
-    # end
     @suspect = Suspect.new
     unless params[:criminal_id].nil?
       @criminal = Criminal.find(params[:criminal_id])
@@ -16,16 +11,6 @@ class SuspectsController < ApplicationController
   end
   
   def create
-    # @assignment = Assignment.new(assignment_params)
-    # @assignment.start_date = Date.current
-    # if @assignment.save
-    #   flash[:notice] = "Successfully added assignment."
-    #   redirect_to officer_path(@assignment.officer)
-
-    # else
-    #   @officer = Officer.find(params[:assignment][:officer_id])
-    #   render action: 'new', locals: { officer: @officer }
-    # end
     @suspect = Suspect.new(suspect_params)
     @suspect.added_on = Date.current
     if @suspect.save
@@ -38,10 +23,6 @@ class SuspectsController < ApplicationController
   end
 
   def terminate
-    # @assignment = Assignment.find(params[:id])
-    # @assignment.end_date = Date.current
-    # @assignment.save
-    # redirect_to officer_path(@assignment.officer)
     @suspect = Suspect.find(params[:id])
     @suspect.dropped_on = Date.current
     @suspect.save
