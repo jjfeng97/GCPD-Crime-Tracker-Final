@@ -42,6 +42,13 @@ class CriminalsController < ApplicationController
   end
 
   def destroy
+    if @criminal.destroy
+      redirect_to criminals_path
+    else
+      @current_suspects = @criminal.suspects.current.chronological
+      @previous_suspects = @criminal.suspects.alphabetical.to_a - @current_suspects
+      render action: 'show'
+    end
   end
 
 
