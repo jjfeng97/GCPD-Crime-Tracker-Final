@@ -21,19 +21,23 @@
             </tr>
           <% end %>
       </table>
-      <% if can? :new, Assignment %>
-      <div class="card-action">
-        <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id) %>
-      </div>
-    <% end %>
+      <% if @officer.active %>
+        <% if can? :new, Assignment %>
+        <div class="card-action">
+          <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id) %>
+        </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 <% else%>
-  <% if can? :new, Assignment %>
-    <div class="card grey lighten-3">
-      <div class="card-action">
-        <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id) %>
+  <% if @officer.active %>
+    <% if can? :new, Assignment %>
+      <div class="card grey lighten-3">
+        <div class="card-action">
+          <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id) %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end%>

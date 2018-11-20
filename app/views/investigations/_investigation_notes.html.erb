@@ -1,1 +1,43 @@
-<%# stuff goes here %>
+<% unless @notes.empty? %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Investigation Notes</span>
+      <table class="lined">
+        <thead>
+          <th>Content</th>
+          <th>Date</th>
+        </thead>
+          <% for note in @notes %>
+            <tr>
+              <td>
+                <% if can? :destroy, InvestigationNote %>
+                  <%= link_to(investigation_note_path(note), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+                    x&nbsp;&nbsp;
+                  <% end %>
+                <% end %>
+                &nbsp;<%= note.content %>
+              </td>
+              <td><%= note.date.strftime("%m/%d/%y") %></td>
+            </tr>
+          <% end %>
+      </table>
+      <% if @investigation.date_closed.nil? %>
+        <% if can? :new, InvestigationNote %>
+        <div class="card-action">
+          <%= link_to "Add a new note", new_investigation_note_path(investigation_id: @investigation.id, officer_id: current_user.officer.id) %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else%>
+  <% if @investigation.date_closed.nil? %>
+    <% if can? :new, InvestigationNote %>
+      <div class="card grey lighten-3">
+        <div class="card-action">
+          <%= link_to "Add a new note", new_investigation_note_path(investigation_id: @investigation.id, officer_id: current_user.officer.id) %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end%>
