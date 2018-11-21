@@ -26,7 +26,7 @@
       <% if @investigation.date_closed.nil? %>
         <% if can? :new, Assignment %>
         <div class="card-action">
-          <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id) %>
+          <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id, from: "investigation") %>
         </div>
         <% end %>
       <% end %>
@@ -39,7 +39,7 @@
   <% if @investigation.date_closed.nil? %>
     <% if can? :new, Assignment %>
     <div class="card-action">
-      <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id) %>
+      <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id, from: "investigation") %>
     </div>
     <% end %>
   <% end %>

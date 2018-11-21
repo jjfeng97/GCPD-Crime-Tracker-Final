@@ -34,11 +34,6 @@ Rails.application.routes.draw do
   post 'suspects', to: 'suspects#create', as: :suspects
   patch 'suspects/:id/terminate', to: 'suspects#terminate', as: :terminate_suspect
 
-  # Routes for investigation notes
-  # get 'investigation_notes/new', to: 'investigation_notes#new', as: :new_investigation_note
-  # post 'investigation_notes', to: 'investigation_notes#create', as: :investigation_notes
-  # delete 'investigation_notes/:id', to: 'investigation_notes#destroy', as: :destroy_investigation_note
-
   # Toggle paths
 
 

@@ -43,6 +43,7 @@ class SuspectsController < ApplicationController
       redirect_to criminal_path(@suspect.criminal)
     else
       redirect_to investigation_path(@suspect.investigation)
+    end
   end
 
   private
