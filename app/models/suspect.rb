@@ -2,6 +2,7 @@ class Suspect < ApplicationRecord
   # Relationships
   belongs_to :investigation
   belongs_to :criminal
+  attr_accessor :from
 
   # Scopes
   scope :current, -> { where(dropped_on: nil) }

@@ -8,6 +8,10 @@ class SuspectsController < ApplicationController
       @criminal = Criminal.find(params[:criminal_id])
       @criminal_investigations = @criminal.suspects.current.map{|s| s.investigation }
     end
+    unless params[:investigation_id].nil?
+      @investigation = Investigation.find(params[:investigation_id])
+      @investigation_criminals = @investigation.suspects.current.map{|s| s.criminal }
+    end
   end
   
   def create
@@ -15,10 +19,19 @@ class SuspectsController < ApplicationController
     @suspect.added_on = Date.current
     if @suspect.save
       flash[:notice] = "Successfully added suspect."
-      redirect_to criminal_path(@suspect.criminal)
+      if @suspect.from == "criminal"
+        redirect_to criminal_path(@suspect.criminal)
+      else
+        redirect_to investigation_path(@suspect.investigation)
+      end
     else
-      @criminal = Criminal.find(params[:suspect][:criminal_id])
-      render action: 'new', locals: { criminal: @criminal }
+      if @suspect.from == "criminal"
+        @criminal = Criminal.find(params[:suspect][:criminal_id])
+        render action: 'new', locals: { criminal: @criminal }
+      else
+        @investigation = Investigation.find(params[:suspect][:investigation_id])
+        render action: 'new', locals: { investigation: @investigation }
+      end
     end
   end
 
@@ -26,11 +39,14 @@ class SuspectsController < ApplicationController
     @suspect = Suspect.find(params[:id])
     @suspect.dropped_on = Date.current
     @suspect.save
-    redirect_to criminal_path(@suspect.criminal)
+    if @suspect.from == "criminal"
+      redirect_to criminal_path(@suspect.criminal)
+    else
+      redirect_to investigation_path(@suspect.investigation)
   end
 
   private
   def suspect_params
-    params.require(:suspect).permit(:criminal_id, :investigation_id, :added_on, :dropped_on)
+    params.require(:suspect).permit(:from, :criminal_id, :investigation_id, :added_on, :dropped_on)
   end
 end
