@@ -3,11 +3,13 @@
     <h5>Information for <%= @investigation.title %></h5><br />
 
     <b>Crimes committed:&nbsp;&nbsp;</b><br />
-      <% @case_crimes.each do |crime| %> 
+      <% @case_crimes.sort_by{ |c| c.crime.name }.each do |ci| %> <!-- goes through crime investigations -->
         <!-- <li><%# crime.name %></li> -->
 
-
-        <%= crime.name %><br />
+        <%= link_to(destroy_crime_investigation_path(ci), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+                    x&nbsp;&nbsp;
+        <% end %>
+        <%= ci.crime.name %><br />
       <% end %>
       <%= link_to "Add a new crime to this investigation", new_crime_investigation_path(investigation_id: @investigation.id) %>
 

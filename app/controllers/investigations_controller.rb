@@ -15,7 +15,7 @@ class InvestigationsController < ApplicationController
     @past_assignments = @investigation.assignments.by_officer.to_a - @current_assignments
     @current_suspects = @investigation.suspects.current.alphabetical.to_a
     @previous_suspects = @investigation.suspects.alphabetical.to_a - @current_suspects
-    @case_crimes = @investigation.crimes.alphabetical.to_a
+    @case_crimes = @investigation.crime_investigations.to_a
     @officer = Officer.new
     @notes = @investigation.investigation_notes.chronological
   end
