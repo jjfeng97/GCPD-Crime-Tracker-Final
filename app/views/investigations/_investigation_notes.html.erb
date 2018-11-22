@@ -2,6 +2,7 @@
   <div class="card">
     <div class="card-content">
       <span class="card-title">Investigation Notes</span>
+
       <table class="lined">
         <thead>
           <th>Content</th>
@@ -9,6 +10,7 @@
         </thead>
           <% for note in @notes %>
             <tr>
+
               <td>
                 <% if can? :destroy, InvestigationNote %>
                   <%= link_to(investigation_note_path(note), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
@@ -17,10 +19,21 @@
                 <% end %>
                 &nbsp;<%= note.content %>
               </td>
+
               <td><%= note.date.strftime("%m/%d/%y") %></td>
+
+              <td>
+                <% if can? :edit, InvestigationNote %>
+                  <%= link_to edit_investigation_note_path(note) do %>
+                    <i class="material-icons">edit</i>
+                  <% end %>
+                <% end %>
+              </td>
+
             </tr>
           <% end %>
       </table>
+
       <% if @investigation.date_closed.nil? %>
         <% if can? :new, InvestigationNote %>
         <div class="card-action">
@@ -28,6 +41,7 @@
         </div>
         <% end %>
       <% end %>
+
     </div>
   </div>
 <% else%>

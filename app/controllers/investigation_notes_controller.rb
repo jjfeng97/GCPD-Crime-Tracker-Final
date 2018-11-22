@@ -29,15 +29,13 @@ class InvestigationNotesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @investigation_note.update_attributes(criminal_params)
-        flash[:notice] = "Successfully updated investigation note."
-        redirect_to officer_path(@investigation_note.officer)
-      else
-        @investigation = Investigation.find(params[:investigation_note][:investigation_id])
-        @officer = Officer.find(params[:investigation_note][:officer_id])
-        render action: 'edit', locals: { investigation: @investigation, officer: @officer }
-      end
+    if @investigation_note.update_attributes(investigation_note_params)
+      flash[:notice] = "Successfully updated investigation note."
+      redirect_to investigation_path(@investigation_note.investigation)
+    else
+      @investigation = Investigation.find(params[:investigation_note][:investigation_id])
+      @officer = Officer.find(params[:investigation_note][:officer_id])
+      render action: 'edit', locals: { investigation: @investigation, officer: @officer }
     end
   end
 
