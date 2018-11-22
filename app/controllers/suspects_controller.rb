@@ -39,10 +39,13 @@ class SuspectsController < ApplicationController
     @suspect = Suspect.find(params[:id])
     @suspect.dropped_on = Date.current
     @suspect.save
+    puts @suspect.from
     if @suspect.from == "criminal"
       redirect_to criminal_path(@suspect.criminal)
+      # return
     else
       redirect_to investigation_path(@suspect.investigation)
+      # return
     end
   end
 

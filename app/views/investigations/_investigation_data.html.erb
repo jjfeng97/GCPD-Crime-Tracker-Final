@@ -9,8 +9,9 @@
 
         <%= crime.name %><br />
       <% end %>
+      <%= link_to "Add a new crime to this investigation", new_crime_investigation_path(investigation_id: @investigation.id) %>
 
-
+      <br />
       <br />
 
     <b>Location:&nbsp;&nbsp;</b>
