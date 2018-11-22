@@ -1,6 +1,7 @@
 class InvestigationNotesController < ApplicationController
   before_action :set_investigation_note, only: [:show, :edit, :update, :destroy]
   before_action :check_login
+  authorize_resource
 
   def new
     @investigation_note = InvestigationNote.new

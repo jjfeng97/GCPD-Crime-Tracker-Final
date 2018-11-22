@@ -1,7 +1,7 @@
 class CriminalsController < ApplicationController
   before_action :set_criminal, only: [:show, :edit, :update, :destroy]
   before_action :check_login
-
+  authorize_resource
 
   def index
     @felons = Criminal.prior_record.alphabetical.paginate(page: params[:page]).per_page(10)

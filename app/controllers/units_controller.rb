@@ -1,6 +1,6 @@
 class UnitsController < ApplicationController
   before_action :check_login
-
+  authorize_resource
   
   def index
     @active_units = Unit.active.alphabetical.paginate(page: params[:page]).per_page(10)

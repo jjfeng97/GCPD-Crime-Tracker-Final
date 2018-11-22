@@ -1,6 +1,6 @@
 class SuspectsController < ApplicationController
   before_action :check_login
-
+  authorize_resource
 
   def new
     @suspect = Suspect.new

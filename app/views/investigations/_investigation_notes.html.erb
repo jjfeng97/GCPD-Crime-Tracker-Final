@@ -12,7 +12,8 @@
             <tr>
 
               <td>
-                <% if can? :destroy, InvestigationNote %>
+                <!-- only show option to destroy note if officer was the one who wrote it -->
+                <% if can? :destroy, InvestigationNote and note.officer == current_user.officer %>
                   <%= link_to(investigation_note_path(note), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this note?' }) do %>
                     x&nbsp;&nbsp;
                   <% end %>
@@ -23,7 +24,8 @@
               <td><%= note.date.strftime("%m/%d/%y") %></td>
 
               <td>
-                <% if can? :edit, InvestigationNote %>
+                <!-- only show option to edit note if officer was the one who wrote it -->
+                <% if can? :edit, InvestigationNote and note.officer == current_user.officer %>
                   <%= link_to edit_investigation_note_path(note) do %>
                     <i class="material-icons">edit</i>
                   <% end %>
@@ -34,7 +36,7 @@
           <% end %>
       </table>
 
-      <%-# only show option to create comment if officer is assigned to case-%>
+      <!-- only show option to create note if officer is assigned to case -->
       <% if @investigation.date_closed.nil? and @investigation.assignments.map{ |a| a.officer }.include? current_user.officer %>
         <% if can? :new, InvestigationNote %>
         <div class="card-action">

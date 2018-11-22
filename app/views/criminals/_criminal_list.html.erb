@@ -8,19 +8,23 @@
     <thead>
       <th>Criminal</th>
 
-
-      <th class="align_center">Edit</th>
+      <% if can? :edit, Criminal %>
+        <th class="align_center">Edit</th>
+      <% end %>
     </thead>
     <% for criminal in criminals %>
       <tr>
         <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
         <td><%= link_to criminal.name, criminal_path(criminal) %></td>
 
-      <td class="align_center">
-        <%= link_to edit_criminal_path(criminal) do %>
-          <i class="material-icons">edit</i>
-        <% end %>
-      </td>
+        <td class="align_center">
+          <% if can? :edit, Criminal %>
+            <%= link_to edit_criminal_path(criminal) do %>
+              <i class="material-icons">edit</i>
+            <% end %>
+          <% end %>
+        </td>
+      
       </tr>
     <% end %>
   </table>
