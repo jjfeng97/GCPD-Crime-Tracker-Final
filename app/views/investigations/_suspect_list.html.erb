@@ -11,7 +11,7 @@
             <tr>
               <td>
                 <% if can? :terminate, Suspect %>
-                  <%= link_to(terminate_suspect_path(suspect, from: "investigation"), class: 'remove', method: :patch) do %>
+                  <%= link_to(terminate_suspect_path(suspect, from: "investigation"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to remove this suspect from the investigation?' }) do %>
                     x&nbsp;&nbsp;
                   <% end %>
                 <% end %>

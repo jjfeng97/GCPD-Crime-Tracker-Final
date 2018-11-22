@@ -11,7 +11,7 @@
             <tr>
               <td>
                 <% if can? :terminate, Assignment %>
-                  <%= link_to(terminate_assignment_path(assignment, from: "investigation"), class: 'remove', method: :patch) do %>
+                  <%= link_to(terminate_assignment_path(assignment, from: "investigation"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to terminate this assignment?' }) do %>
                     x&nbsp;&nbsp;
                   <% end %>
                 <% end %>
