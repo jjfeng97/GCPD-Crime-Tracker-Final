@@ -48,7 +48,7 @@
     </div>
   </div>
 <% else%>
-  <%-# only show option to create comment if officer is assigned to case-%>
+  <!-- only show option to create comment if officer is assigned to case-->
   <% if @investigation.date_closed.nil? and @investigation.assignments.map{ |a| a.officer }.include? current_user.officer %>
     <% if can? :new, InvestigationNote %>
       <div class="card grey lighten-3">

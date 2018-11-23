@@ -8,11 +8,23 @@
     <thead>
       <th>Title</th>
       <th>Date <%= state %></th>
+
+      <% if can? :edit, Investigation %>
+        <th class="align_center">Edit</th>
+      <% end %>
     </thead>
     <% for investigation in investigations %>
       <tr>
         <td><%= link_to investigation.title, investigation_path(investigation) %></td>
         <td><%= display_date(investigation, state) %></td>
+
+        <% if can? :edit, investigation %>
+          <td class="align_center">
+            <%= link_to edit_investigation_path(investigation) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

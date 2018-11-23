@@ -28,7 +28,7 @@ class CrimesController < ApplicationController
     @crime = Crime.find(params[:id])
     respond_to do |format|
       if @crime.update_attributes(crime_params)
-        format.html { redirect_to @crime, notice: "Updated information" }
+        format.html { redirect_to @crime, notice: "Successfully updated information for #{@crime.name}." }
 
       else
         format.html { render :action => "edit" }

@@ -15,7 +15,7 @@ class CrimeInvestigationsController < ApplicationController
   def create
     @crime_investigation = CrimeInvestigation.new(crime_investigation_params)
     if @crime_investigation.save
-      flash[:notice] = "Successfully added crime to investigation."
+      flash[:notice] = "Successfully added #{@crime_investigation.crime.name} as a crime to investigation."
       redirect_to investigation_path(@crime_investigation.investigation)
     else
       @investigation = Investigation.find(params[:crime_investigation][:investigation_id])
@@ -27,7 +27,7 @@ class CrimeInvestigationsController < ApplicationController
   def destroy
     @crime_investigation = CrimeInvestigation.find(params[:id])
     if @crime_investigation.destroy
-      flash[:notice] = "Successfully removed crime from investigation."
+      flash[:notice] = "Successfully removed the crime #{@crime_investigation.crime.name} from investigation."
       redirect_to investigation_path(@crime_investigation.investigation)
     end
   end

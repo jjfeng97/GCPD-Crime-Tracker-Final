@@ -42,7 +42,7 @@ class InvestigationNotesController < ApplicationController
 
   def destroy
     if @investigation_note.destroy
-      flash[:notice] = "Successfully removed this investigation note."
+      flash[:notice] = "Successfully removed investigation note."
       redirect_to investigation_path(@investigation_note.investigation)
     end
   end

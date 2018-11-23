@@ -7,9 +7,9 @@
   <table class="striped highlight">
     <thead>
       <th>Unit</th>
-
-
-      <th class="align_center">Edit</th>
+      <% if can? :edit, Unit %>
+        <th class="align_center">Edit</th>
+      <% end %>
     </thead>
     <% for unit in units %>
       <tr>
@@ -20,11 +20,14 @@
 
 
 
-      <td class="align_center">
-        <%= link_to edit_unit_path(unit) do %>
-          <i class="material-icons">edit</i>
-        <% end %>
-      </td>
+      <% if can? :edit, Unit %>
+        <td class="align_center">
+          <%= link_to edit_unit_path(unit) do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+        </td>
+      <% end %>
+
       </tr>
     <% end %>
   </table>

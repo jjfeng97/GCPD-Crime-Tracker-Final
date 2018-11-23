@@ -33,7 +33,7 @@ class UnitsController < ApplicationController
     @unit = Unit.find(params[:id])
     respond_to do |format|
       if @unit.update_attributes(unit_params)
-        format.html { redirect_to @unit, notice: "Updated information" }
+        format.html { redirect_to @unit, notice: "Successfully updated information for #{@unit.name}." }
 
       else
         format.html { render :action => "edit" }

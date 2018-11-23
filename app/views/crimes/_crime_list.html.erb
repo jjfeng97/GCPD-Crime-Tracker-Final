@@ -9,8 +9,9 @@
       <th>Crime</th>
       <th>Level</th>
 
-
-      <th class="align_center">Edit</th>
+      <% if can? :edit, Unit %>
+        <th class="align_center">Edit</th>
+      <% end %>
     </thead>
     <% for crime in crimes %>
       <tr>
@@ -21,12 +22,13 @@
 
 
 
-
-        <td class="align_center">
-          <%= link_to edit_crime_path(crime) do %>
-              <i class="material-icons">edit</i>
-          <% end %>
-        </td>
+        <% if can? :edit, Crime %>
+          <td class="align_center">
+            <%= link_to edit_crime_path(crime) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

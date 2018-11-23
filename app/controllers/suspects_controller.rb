@@ -18,7 +18,7 @@ class SuspectsController < ApplicationController
     @suspect = Suspect.new(suspect_params)
     @suspect.added_on = Date.current
     if @suspect.save
-      flash[:notice] = "Successfully added suspect."
+      flash[:notice] = "Successfully added #{@suspect.criminal.proper_name} as a suspect of #{@suspect.investigation.title}."
       if @suspect.from == "criminal"
         redirect_to criminal_path(@suspect.criminal)
       else
@@ -39,7 +39,7 @@ class SuspectsController < ApplicationController
     @suspect = Suspect.find(params[:id])
     @suspect.dropped_on = Date.current
     @suspect.save
-    puts @suspect.from
+    flash[:notice] = "Successfully removed #{@suspect.criminal.proper_name} as a suspect from #{@suspect.investigation.title}."
     if @suspect.from == "criminal"
       redirect_to criminal_path(@suspect.criminal)
       # return

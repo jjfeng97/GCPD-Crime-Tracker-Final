@@ -38,8 +38,10 @@
 	<%# allow to add a new assignment might be nice %>
   <% if @investigation.date_closed.nil? %>
     <% if can? :new, Suspect %>
-    <div class="card-action">
-      <%= link_to "Add a new suspect", new_suspect_path(investigation_id: @investigation.id, from: "investigation") %>
+    <div class="card grey lighten-3">
+      <div class="card-action">
+        <%= link_to "Add a new suspect", new_suspect_path(investigation_id: @investigation.id, from: "investigation") %>
+      </div>
     </div>
     <% end %>
   <% end %>

@@ -34,7 +34,7 @@ class CriminalsController < ApplicationController
   def update
     respond_to do |format|
       if @criminal.update_attributes(criminal_params)
-        format.html { redirect_to @criminal, notice: "Updated all information" }
+        format.html { redirect_to @criminal, notice: "Successfully updated information for #{@criminal.proper_name}." }
       else
         format.html { render :action => "edit" }
       end
@@ -43,7 +43,7 @@ class CriminalsController < ApplicationController
 
   def destroy
     if @criminal.destroy
-      redirect_to criminals_path
+      format.html { redirect_to criminals_path, notice: "Successfully deleted #{@criminal.proper_name}." }
     else
       @current_suspects = @criminal.suspects.current.chronological
       @previous_suspects = @criminal.suspects.alphabetical.to_a - @current_suspects

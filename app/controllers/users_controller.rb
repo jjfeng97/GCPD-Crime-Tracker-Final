@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to users_url, notice: "Successfully removed #{@user.proper_name} from the PATS system."
+      redirect_to users_url, notice: "Successfully removed #{@user.proper_name} from the GCPD system."
     else
       render action: 'show'
     end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :active, :username, :role, :password, :password_confirmation)
+      params.require(:user).permit(:active, :username, :role, :password, :password_confirmation)
     end
 
 end

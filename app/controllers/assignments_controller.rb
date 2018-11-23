@@ -18,7 +18,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new(assignment_params)
     @assignment.start_date = Date.current
     if @assignment.save
-      flash[:notice] = "Successfully added assignment."
+      flash[:notice] = "Successfully assigned #{@assignment.officer.proper_name} to #{@assignment.investigation.title}."
       if @assignment.from == "officer"
         redirect_to officer_path(@assignment.officer)
       else
@@ -40,6 +40,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     @assignment.end_date = Date.current
     @assignment.save
+    flash[:notice] = "Successfully removed #{@assignment.officer.proper_name} from #{@assignment.investigation.title}."
     if @assignment.from == "officer"
       redirect_to officer_path(@assignment.officer)
     else
