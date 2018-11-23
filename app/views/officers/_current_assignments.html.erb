@@ -9,6 +9,7 @@
         </thead>
           <% for assignment in @current_assignments %>
             <tr>
+
               <td>
                 <% if can? :terminate, Assignment %>
                   <%= link_to(terminate_assignment_path(assignment, from: "officer"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to terminate this assignment?' }) do %>
@@ -17,10 +18,13 @@
                 <% end %>
                 &nbsp;<%= link_to assignment.investigation.title, investigation_path(assignment.investigation) %>
               </td>
+
               <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+
             </tr>
           <% end %>
       </table>
+
       <% if @officer.active %>
         <% if can? :new, Assignment %>
         <div class="card-action">
@@ -28,6 +32,7 @@
         </div>
         <% end %>
       <% end %>
+      
     </div>
   </div>
 <% else%>

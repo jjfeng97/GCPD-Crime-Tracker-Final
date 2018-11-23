@@ -33,13 +33,8 @@ class Ability
         o.unit.id == user.officer.unit.id
       end
 
-      # can read their own user profile
-      can :read, User do |u|  
-        u.id == user.id
-      end
-
-      # can update their own user profile
-      can :update, User do |u|  
+      # can manage their own user profile
+      can :manage, User do |u|  
         u.id == user.id
       end
 
