@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:notice] = "Successfully updated #{@user.proper_name}."
+      flash[:notice] = "Successfully updated #{@user.username}."
       redirect_to users_url
     else
       render action: 'edit'
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to users_url, notice: "Successfully removed #{@user.proper_name} from the GCPD system."
+      redirect_to users_url, notice: "Successfully removed #{@user.username} from the GCPD system."
     else
       render action: 'show'
     end

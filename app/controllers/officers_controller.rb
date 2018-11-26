@@ -57,8 +57,17 @@ class OfficersController < ApplicationController
     end
   end
 
-
-
+  def destroy
+    if @officer.destroy
+      flash[:notice] = "Successfully deleted #{@officer.proper_name} from the GCPD system."
+      redirect_to officers_path
+    else
+      @current_assignments = @officer.assignments.current.chronological
+      @past_assignments = @officer.assignments.past.chronological
+      flash[:notice] = "#{@officer.proper_name} could not be deleted, so was instead made inactive."
+      render action: 'show'
+    end
+  end
 
 
   private

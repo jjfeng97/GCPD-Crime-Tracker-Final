@@ -18,6 +18,11 @@
             <i class="material-icons">edit</i>
           <% end %> 
         <% end %>
+        <% if can? :destroy, user %>
+          <%# link_to destroy_user_path(user) do %>
+            <i class="material-icons">delete</i>
+          <% #end %> 
+        <% end %>
       </td>
     </tr>
   <% end %>

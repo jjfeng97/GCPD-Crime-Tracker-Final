@@ -52,7 +52,7 @@ class InvestigationsController < ApplicationController
   def close
     @investigation.date_closed = Date.current
     if @investigation.save
-      redirect_to investigations_path, notice: "Successfully added #{@investigation.title} to GCPD."
+      redirect_to investigations_path, notice: "Successfully closed #{@investigation.title}."
     else
       @current_assignments = @investigation.assignments.current.by_officer.to_a
       @past_assignments = @investigation.assignments.by_officer.to_a - @current_assignments
