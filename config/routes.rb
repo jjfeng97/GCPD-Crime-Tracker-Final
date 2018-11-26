@@ -45,6 +45,8 @@ Rails.application.routes.draw do
 
 
   # Other custom routes
+  # for closing Investigations
+  patch 'investigations/:id/close', to: 'investigations#close', as: :close_investigation
 
 
 

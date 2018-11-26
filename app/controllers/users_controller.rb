@@ -13,14 +13,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.role = "assistant" if current_user.role?(:assistant)
   end
 
   def create
     @user = User.new(user_params)
-    @user.role = "assistant" if current_user.role?(:assistant)
     if @user.save
-      flash[:notice] = "Successfully added #{@user.proper_name} as a user."
+      flash[:notice] = "Successfully added #{@user.username} as a user."
       redirect_to users_url
     else
       render action: 'new'

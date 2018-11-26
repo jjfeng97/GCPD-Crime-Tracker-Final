@@ -48,6 +48,22 @@ class InvestigationsController < ApplicationController
       end
     end
   end
+
+  def close
+    @investigation.date_closed = Date.current
+    if @investigation.save
+      redirect_to investigations_path, notice: "Successfully added #{@investigation.title} to GCPD."
+    else
+      @current_assignments = @investigation.assignments.current.by_officer.to_a
+      @past_assignments = @investigation.assignments.by_officer.to_a - @current_assignments
+      @current_suspects = @investigation.suspects.current.alphabetical.to_a
+      @previous_suspects = @investigation.suspects.alphabetical.to_a - @current_suspects
+      @case_crimes = @investigation.crime_investigations.to_a
+      @officer = Officer.new
+      @notes = @investigation.investigation_notes.chronological
+      render action: 'show'
+    end
+  end
   
 
   private

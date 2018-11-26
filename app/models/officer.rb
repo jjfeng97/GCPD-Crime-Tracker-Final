@@ -3,6 +3,8 @@ class Officer < ApplicationRecord
   extend AppHelpers::Activeable::ClassMethods
   include AppHelpers::Validations
 
+  attr_accessor :username, :password, :password_confirmation, :role
+
   # Relationships
   belongs_to :unit
   belongs_to :user
