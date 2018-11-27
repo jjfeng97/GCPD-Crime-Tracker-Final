@@ -40,8 +40,9 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     @assignment.end_date = Date.current
     @assignment.save
+    from = params[:from]
     flash[:notice] = "Successfully removed #{@assignment.officer.proper_name} from #{@assignment.investigation.title}."
-    if @assignment.from == "officer"
+    if from == "officer"
       redirect_to officer_path(@assignment.officer)
     else
       redirect_to investigation_path(@assignment.investigation)

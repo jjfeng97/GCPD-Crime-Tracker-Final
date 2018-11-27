@@ -39,8 +39,9 @@ class SuspectsController < ApplicationController
     @suspect = Suspect.find(params[:id])
     @suspect.dropped_on = Date.current
     @suspect.save
+    from = params[:from]
     flash[:notice] = "Successfully removed #{@suspect.criminal.proper_name} as a suspect from #{@suspect.investigation.title}."
-    if @suspect.from == "criminal"
+    if from == "criminal"
       redirect_to criminal_path(@suspect.criminal)
       # return
     else

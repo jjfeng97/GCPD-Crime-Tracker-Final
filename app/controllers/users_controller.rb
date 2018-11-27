@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      if @user == current_user  # log out of the system if the current user tries to delete their user account
+      if @user == current_user  # log out of the system if the current user deletes their user account
         redirect_to logout_path
       else
         redirect_to users_url, notice: "Successfully removed #{@user.username} from the GCPD system."

@@ -69,6 +69,13 @@ class OfficersController < ApplicationController
     end
   end
 
+  def search
+    redirect_back(fallback_location: officers_path) if params[:query].blank?
+    @query = params[:query]
+    @officers = Officer.search(@query)
+    @total_hits = @officers.size
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

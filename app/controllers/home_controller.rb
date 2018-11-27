@@ -12,11 +12,11 @@ class HomeController < ApplicationController
   end
 
   def search
-    redirect_back(fallback_location: home_path) if params[:query].blank?
-    @query = params[:query]
-    @officers = Officer.search(@query)
-    @investigations = Investigation.title_search(@query)
-    @criminals = Criminal.search(@query)
-    @total_hits = @officers.size + @investigations.size + @criminals.size
+    # redirect_back(fallback_location: home_path) if params[:query].blank?
+    # @query = params[:query]
+    # @officers = Officer.search(@query)
+    # @investigations = Investigation.title_search(@query)
+    # @criminals = Criminal.search(@query)
+    # @total_hits = @officers.size + @investigations.size + @criminals.size
   end
 end

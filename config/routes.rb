@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/about', to: 'home#about', as: :about
   get 'home/contact', to: 'home#contact', as: :contact
   get 'home/privacy', to: 'home#privacy', as: :privacy
-  get 'home/search', to: 'home#search', as: :search
+  # get 'home/search', to: 'home#search', as: :search
 
 
   # Authentication routes
@@ -54,9 +54,9 @@ Rails.application.routes.draw do
 
 
 # Routes for searching
-  get 'officers/search', to: 'officers#search', as: :officer_search
-  get 'investigations/search', to: 'investigations#search', as: :investigation_search
-  get 'criminals/search', to: 'criminals#search', as: :criminal_search
+  get 'officers_search', to: 'officers#search', as: :officer_search
+  get 'investigations_search', to: 'investigations#search', as: :investigation_search
+  get 'criminals_search', to: 'criminals#search', as: :criminal_search
 
   # You can have the root of your site routed with 'root'
   root 'home#index'
