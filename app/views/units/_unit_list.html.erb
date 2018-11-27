@@ -20,13 +20,13 @@
 
 
 
-      <% if can? :edit, Unit %>
-        <td class="align_center">
-          <%= link_to edit_unit_path(unit) do %>
-            <i class="material-icons">edit</i>
-          <% end %>
-        </td>
-      <% end %>
+        <% if can? :edit, unit %>
+          <td class="align_center">
+            <%= link_to edit_unit_path(unit) do %>
+              <i class="material-icons">edit</i>
+            <% end %>
+          </td>
+        <% end %>
 
       </tr>
     <% end %>

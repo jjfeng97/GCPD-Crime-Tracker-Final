@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'home/about', to: 'home#about', as: :about
   get 'home/contact', to: 'home#contact', as: :contact
   get 'home/privacy', to: 'home#privacy', as: :privacy
+  get 'home/search', to: 'home#search', as: :search
 
 
   # Authentication routes
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   resources :users
   get 'users/new', to: 'users#new', as: :signup
   get 'user/edit', to: 'users#edit', as: :edit_current_user
-  #get 'users/:id/destroy', to: 'users#destroy', as: :destroy_user
+  get 'users/:id/destroy', to: 'users#destroy', as: :destroy_user
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
@@ -52,10 +53,10 @@ Rails.application.routes.draw do
 
 
 
-  # Routes for searching
-
-
-
+# Routes for searching
+  get 'officers/search', to: 'officers#search', as: :officer_search
+  get 'investigations/search', to: 'investigations#search', as: :investigation_search
+  get 'criminals/search', to: 'criminals#search', as: :criminal_search
 
   # You can have the root of your site routed with 'root'
   root 'home#index'

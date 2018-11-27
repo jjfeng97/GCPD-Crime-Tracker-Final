@@ -1,4 +1,4 @@
-<h4>Users at PATS</h4>
+<h4>Users in the GCPD</h4>
 
 <table class="striped highlight">
   <thead>
@@ -19,9 +19,9 @@
           <% end %> 
         <% end %>
         <% if can? :destroy, user %>
-          <%# link_to destroy_user_path(user) do %>
+          <%= link_to destroy_user_path(user), data: { confirm: 'Are you sure you wish delete this user?' } do %>
             <i class="material-icons">delete</i>
-          <% #end %> 
+          <% end %> 
         <% end %>
       </td>
     </tr>
