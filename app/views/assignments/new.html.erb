@@ -1,5 +1,7 @@
 <% if @officer_investigations.nil? %>
   <%= render :partial => "assign_from_investigation" %>
+<% elsif params[:from] == "dashboard" %>
+	<%= render :partial => "assign_from_dashboard" %>
 <% else %>
   <%= render :partial => "assign_from_officer" %>
 <% end %>

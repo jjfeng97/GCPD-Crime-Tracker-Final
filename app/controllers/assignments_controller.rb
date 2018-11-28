@@ -19,7 +19,10 @@ class AssignmentsController < ApplicationController
     @assignment.start_date = Date.current
     if @assignment.save
       flash[:notice] = "Successfully assigned #{@assignment.officer.proper_name} to #{@assignment.investigation.title}."
-      if @assignment.from == "officer"
+      from = params[:from]
+      if @assignment.from == "dashboard"
+        redirect_to dashboard_path
+      elsif @assignment.from == "officer"
         redirect_to officer_path(@assignment.officer)
       else
         redirect_to investigation_path(@assignment.investigation)
@@ -44,6 +47,8 @@ class AssignmentsController < ApplicationController
     flash[:notice] = "Successfully removed #{@assignment.officer.proper_name} from #{@assignment.investigation.title}."
     if from == "officer"
       redirect_to officer_path(@assignment.officer)
+    elsif from == "dashboard"
+      redirect_to dashboard_path
     else
       redirect_to investigation_path(@assignment.investigation)
     end

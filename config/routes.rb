@@ -53,10 +53,15 @@ Rails.application.routes.draw do
 
 
 
-# Routes for searching
+  # Routes for searching
   get 'officers_search', to: 'officers#search', as: :officer_search
   get 'investigations_search', to: 'investigations#search', as: :investigation_search
   get 'criminals_search', to: 'criminals#search', as: :criminal_search
+
+
+  # Dashboard routes
+  get 'dashboard', to: 'dashboard#index', as: :dashboard
+
 
   # You can have the root of your site routed with 'root'
   root 'home#index'

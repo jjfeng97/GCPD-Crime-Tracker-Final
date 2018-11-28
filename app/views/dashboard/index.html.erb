@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-content">
+    <h5>Welcome, <%= @officer.proper_name %>!</h5>
+  </div>
+</div>
+
+<% #if current_user.role == "officer" %>
+	<%= render partial: "partials/dashboard", locals: {primary: "main", 
+	                                                   secondary: nil,
+	                                                   sidebar: "assignment_list"} %>
+<% #end %>
