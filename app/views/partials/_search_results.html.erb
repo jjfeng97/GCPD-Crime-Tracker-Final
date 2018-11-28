@@ -1,8 +1,8 @@
-<h5>Search result for term <em>'<%= query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
+<h5>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
 <p class="supertiny">&nbsp;</p>
 
 <% unless objects.empty? %>
-  <p><em><strong><%= eval(model_name.capitalize) %>s matching term '<%= query %>'</strong></em></p>
+  <p><em><strong><%= eval(model_name.capitalize) %>s matching term '<%= @query %>'</strong></em></p>
   <ul>
     <% for object in objects do %>
     	<% if object.respond_to?(:name) %>
