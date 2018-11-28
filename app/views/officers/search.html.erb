@@ -1,12 +1,3 @@
-<h5>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
-<p class="supertiny">&nbsp;</p>
-
-<% unless @officers.empty? %>
-  <p><em><strong>Officers matching term '<%= @query %>'</strong></em></p>
-  <ul>
-    <% for officer in @officers do %>
-      <li><%= link_to officer.name, officer_path(officer) %></li>
-    <% end %>
-  </ul>
-  <p class="smtext">&nbsp;</p>
-<% end %>
+<div class="row">
+  <%= render :partial => "partials/search_results", locals: {model_name: "officer", objects: @officers, query: @query} %>
+</div>

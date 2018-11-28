@@ -64,7 +64,7 @@ class OfficersController < ApplicationController
     else
       @current_assignments = @officer.assignments.current.chronological
       @past_assignments = @officer.assignments.past.chronological
-      flash[:notice] = "#{@officer.proper_name} could not be deleted, so was instead made inactive."
+      flash[:error] = "#{@officer.proper_name} could not be deleted, so was instead made inactive."
       render action: 'show'
     end
   end
@@ -74,6 +74,12 @@ class OfficersController < ApplicationController
     @query = params[:query]
     @officers = Officer.search(@query)
     @total_hits = @officers.size
+    if @total_hits == 0
+      redirect_to officers_path
+      flash[:error] = "No results found."
+    elsif @total_hits == 1
+      redirect_to officer_path(@officers.first)
+    end
   end
 
 

@@ -51,6 +51,19 @@ class CriminalsController < ApplicationController
     end
   end
 
+  def search
+    redirect_back(fallback_location: criminals_path) if params[:query].blank?
+    @query = params[:query]
+    @criminals = Criminal.search(@query)
+    @total_hits = @criminals.size
+    if @total_hits == 0
+      redirect_to criminals_path
+      flash[:error] = "No results found."
+    elsif @total_hits == 1
+      redirect_to criminal_path(@criminals.first)
+    end 
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

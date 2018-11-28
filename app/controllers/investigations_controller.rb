@@ -64,6 +64,19 @@ class InvestigationsController < ApplicationController
       render action: 'show'
     end
   end
+
+  def search
+    redirect_back(fallback_location: investigations_path) if params[:query].blank?
+    @query = params[:query]
+    @investigations = Investigation.title_search(@query)
+    @total_hits = @investigations.size
+    if @total_hits == 0
+      redirect_to investigations_path
+      flash[:error] = "No results found."
+    elsif @total_hits == 1
+      redirect_to investigation_path(@investigations.first)
+    end 
+  end
   
 
   private

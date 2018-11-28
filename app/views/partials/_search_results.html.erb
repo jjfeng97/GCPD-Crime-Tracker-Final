@@ -1,1 +1,23 @@
-More stuff goes here...
+<h5>Search result for term <em>'<%= query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
+<p class="supertiny">&nbsp;</p>
+
+<% unless objects.empty? %>
+  <p><em><strong><%= eval(model_name.capitalize) %>s matching term '<%= query %>'</strong></em></p>
+  <ul>
+    <% for object in objects do %>
+    	<% if object.respond_to?(:name) %>
+      	<li><%= link_to object.name, eval("#{model_name}_path(object)") %></li>
+      <% elsif object.respond_to?(:title) %>
+      	<li><%= link_to object.title, eval("#{model_name}_path(object)") %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>
+
+<% if can? :index, eval(model_name.capitalize) %>
+	<%= link_to("#{model_name.pluralize}", class: 'waves-effect waves-light btn') do %>
+	  &nbsp;Return to <%= model_name.pluralize.capitalize %>
+	<% end %>
+	&nbsp;&nbsp;
+<% end %>
