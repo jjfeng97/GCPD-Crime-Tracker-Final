@@ -1,28 +1,28 @@
 
   <div class="card">
     <div class="card-content">
-      <span class="card-title">My Current Assignments</span>
-      <% unless @current_assignments.empty? %>
-        <% for assignment in @current_assignments %>
+      <span class="card-title">Recently Opened Investigations</span>
+      <% unless @recent_investigations.empty? %>
+        <% for investigation in @recent_investigations %>
 
           <ul class="collapsible">
             <li>
               <div class="collapsible-header"><i class="material-icons">add</i>
-                  <%= assignment.investigation.title %> (started on <%= assignment.start_date.strftime("%m/%d/%y") %>)
+                  <%= investigation.title %> (opened on <%= investigation.date_opened.strftime("%m/%d/%y") %>)
               </div>
 
               <div class="collapsible-body"><span>
                 <div class="card-action">
-                  <%= link_to "Go to Investigation", investigation_path(assignment.investigation) %>
+                  <%= link_to "Go to Investigation", investigation_path(investigation) %>
                 </div>
 
-                <% unless assignment.investigation.investigation_notes.empty? %>
+                <% unless investigation.investigation_notes.empty? %>
                   <table class="striped highlight">
                     <thead>
                       <th>Note</th>
                       <th>Date</th>
                     </thead>
-                    <% for note in assignment.investigation.investigation_notes %>
+                    <% for note in investigation.investigation_notes %>
                       <tr>
                         <td><%= note.content %></td>
                         <td><%= note.date %></td>
@@ -39,9 +39,9 @@
                   </table>
                 <% end %>
 
-                <% if can? :new, InvestigationNote %>
+                <% if can? :new, InvestigationNote and investigation.assignments.map{ |a| a.officer }.include? current_user.officer %>
                   <div class="card-action">
-                    <%= link_to "Add a new note", new_investigation_note_path(investigation_id: assignment.investigation.id, officer_id: current_user.officer.id, from: "dashboard") %>
+                    <%= link_to "Add a new note", new_investigation_note_path(investigation_id: investigation.id, officer_id: current_user.officer.id, from: "dashboard") %>
                   </div>
                 <% end %>
               </span></div>

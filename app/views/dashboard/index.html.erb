@@ -4,8 +4,17 @@
   </div>
 </div>
 
-<% #if current_user.role == "officer" %>
+<% if current_user.role == "officer" %>
 	<%= render partial: "partials/dashboard", locals: {primary: "assignment_list", 
 	                                                   secondary: nil,
+	                                                   tertiary: nil,
 	                                                   sidebar: "main"} %>
-<% #end %>
+<% #elsif current_user.role == "chief" %> 
+
+<% elsif current_user.role == "commish" %>
+	<%= render partial: "partials/dashboard", locals: {primary: "recent_investigations", 
+	                                                   secondary: "recent_assignments",
+	                                                   tertiary: "recent_suspects",
+	                                                   sidebar: "main"} %>
+
+<% end %>

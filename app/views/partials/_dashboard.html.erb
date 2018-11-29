@@ -7,6 +7,11 @@
       <p>&nbsp;</p>
       <%= render partial: "#{secondary}" %>
     <% end %>
+
+    <% unless tertiary.nil? %>
+      <p>&nbsp;</p>
+      <%= render partial: "#{tertiary}" %>
+    <% end %>
   </div>
   <div class="col s4">
     <!-- render the sidebar, if it exists -->
