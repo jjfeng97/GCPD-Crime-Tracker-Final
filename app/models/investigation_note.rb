@@ -4,6 +4,7 @@ class InvestigationNote < ApplicationRecord
   # Relationships
   belongs_to :investigation
   belongs_to :officer
+  attr_accessor :from
 
   # Scopes
   scope :chronological, -> { order(:date) }

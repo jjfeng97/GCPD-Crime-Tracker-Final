@@ -5,7 +5,7 @@
 </div>
 
 <% #if current_user.role == "officer" %>
-	<%= render partial: "partials/dashboard", locals: {primary: "main", 
+	<%= render partial: "partials/dashboard", locals: {primary: "assignment_list", 
 	                                                   secondary: nil,
-	                                                   sidebar: "assignment_list"} %>
+	                                                   sidebar: "main"} %>
 <% #end %>

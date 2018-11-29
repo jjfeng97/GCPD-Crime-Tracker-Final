@@ -20,8 +20,12 @@ class InvestigationNotesController < ApplicationController
     @investigation_note = InvestigationNote.new(investigation_note_params)
     @investigation_note.date = Date.current
     if @investigation_note.save
-      flash[:notice] = "Successfully added investigation note."
-      redirect_to investigation_path(@investigation_note.investigation)
+      flash[:notice] = "Successfully added investigation note to #{@investigation_note.investigation.title}."
+      if @investigation_note.from == "dashboard"
+        redirect_to dashboard_path
+      else
+        redirect_to investigation_path(@investigation_note.investigation)
+      end
     else
       @investigation = Investigation.find(params[:investigation_note][:investigation_id])
       @officer = Officer.find(params[:investigation_note][:officer_id])
@@ -53,6 +57,6 @@ class InvestigationNotesController < ApplicationController
   end
 
   def investigation_note_params
-    params.require(:investigation_note).permit(:officer_id, :investigation_id, :content, :date)
+    params.require(:investigation_note).permit(:from, :officer_id, :investigation_id, :content, :date)
   end
 end
