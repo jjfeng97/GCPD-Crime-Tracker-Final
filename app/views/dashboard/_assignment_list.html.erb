@@ -3,39 +3,48 @@
     <div class="card-content">
       <span class="card-title">My Current Assignments</span>
       <% unless @current_assignments.empty? %>
-      <table class="lined">
-        <thead>
-          <th>Case</th>
-          <th>Starting</th>
-          <th>Add Note </th>
-        </thead>
-          <% for assignment in @current_assignments %>
-            <tr>
+        <% for assignment in @current_assignments %>
 
-              <td>
-                <% if can? :terminate, assignment %>
-                  <%= link_to(terminate_assignment_path(assignment, from: "dashboard"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to terminate this assignment?' }) do %>
-                    x&nbsp;&nbsp;
+          <ul class="collapsible">
+            <li>
+              <div class="collapsible-header"><i class="material-icons">add</i>
+                  &nbsp;<%= link_to assignment.investigation.title, investigation_path(assignment.investigation) %>
+              </div>
+
+              <div class="collapsible-body"><span>
+                Date started: <%= assignment.start_date.strftime("%m/%d/%y") %></br></br>
+
+                <table class="striped highlight">
+                  <thead>
+                    <th>Note</th>
+                    <th>Date</th>
+                  </thead>
+                  <% for note in assignment.investigation.investigation_notes %>
+                    <tr>
+                      <td><%= note.content %></td>
+                      <td><%= note.date %></td>
+
+                      <% if can? :edit, note and note.officer == current_user.officer %>
+                        <td class="align_center">
+                          <%= link_to edit_investigation_note_path(note) do %>
+                              <i class="material-icons">edit</i>
+                          <% end %>
+                        </td>
+                      <% end %>
+                    </tr>
                   <% end %>
-                <% end %>
-                &nbsp;<%= link_to assignment.investigation.title, investigation_path(assignment.investigation) %>
-              </td>
+                </table>
 
-              <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
-
-              <td>
                 <% if can? :new, InvestigationNote %>
-                <div class="card-action">
-                  <%= link_to new_investigation_note_path(investigation_id: assignment.investigation.id, officer_id: current_user.officer.id, from: "dashboard") do %>
-                    <i class="material-icons">note_add</i>
-                  <% end %>
-                </div>
+                  <div class="card-action">
+                    <%= link_to "Add a new note", new_investigation_note_path(investigation_id: assignment.investigation.id, officer_id: current_user.officer.id, from: "dashboard") %>
+                  </div>
                 <% end %>
-              </td>
+              </span></div>
+            </li>
+          </ul>
 
-            </tr>
-          <% end %>
-      </table>
+      <% end %>
 
       <% if @officer.active %>
         <% if can? :new, Assignment %>
