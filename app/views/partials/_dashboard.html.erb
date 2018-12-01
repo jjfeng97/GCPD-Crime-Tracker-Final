@@ -4,12 +4,10 @@
     <%= render partial: "#{primary}" %>
     <!-- sometimes we want another partial below -->
     <% unless secondary.nil? %>
-      <p>&nbsp;</p>
       <%= render partial: "#{secondary}" %>
     <% end %>
 
     <% unless tertiary.nil? %>
-      <p>&nbsp;</p>
       <%= render partial: "#{tertiary}" %>
     <% end %>
   </div>

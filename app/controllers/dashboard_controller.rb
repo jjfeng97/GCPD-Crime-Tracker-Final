@@ -7,6 +7,9 @@ class DashboardController < ApplicationController
   	if current_user.role == "officer"
   		@current_assignments = @officer.assignments.current.chronological.to_a.reverse
     	@past_assignments = @officer.assignments.past.chronological.to_a.reverse
+    elsif current_user.role == "chief"
+  		@current_assignments = @officer.assignments.current.chronological.to_a.reverse
+    	@past_assignments = @officer.assignments.past.chronological.to_a.reverse
     elsif current_user.role == "commish"
     	@recent_investigations = Investigation.is_open.chronological.to_a.reverse.slice(0, 5)
     	@recent_assignments = Assignment.current.chronological.to_a.reverse.slice(0, 5)

@@ -1,0 +1,23 @@
+
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Recently Added Suspects</span>
+      <% unless @recent_suspects.empty? %>
+
+        <table class="striped highlight">
+          <thead>
+            <th>Suspect</th>
+            <th>Investigation</th>
+            <th>Date Added</th>
+          </thead>
+          <% for suspect in @recent_suspects %>
+            <tr>
+              <td><%= link_to suspect.criminal.proper_name, criminal_path(suspect.criminal) %></td>
+              <td><%= link_to suspect.investigation.title, investigation_path(suspect.investigation) %></td>
+              <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% end%>
+    </div>
+  </div>

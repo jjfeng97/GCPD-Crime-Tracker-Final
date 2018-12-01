@@ -44,18 +44,11 @@
                     <%= link_to "Add a new note", new_investigation_note_path(investigation_id: investigation.id, officer_id: current_user.officer.id, from: "dashboard") %>
                   </div>
                 <% end %>
+
               </span></div>
             </li>
           </ul>
 
-      <% end %>
-
-      <% if @officer.active %>
-        <% if can? :new, Assignment %>
-        <div class="card-action">
-          <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id, from: "dashboard") %>
-        </div>
-        <% end %>
       <% end %>
       
     </div>
