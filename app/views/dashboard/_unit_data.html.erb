@@ -1,6 +1,7 @@
 
 <div class="card">
   <div class="card-content">
+    <span class="card-title">Information for <%= @unit.name %></span>
 
     <table>
       <thead>
@@ -18,18 +19,34 @@
       <thead>
         <th>Officer</th>
         <th>Rank</th>
-        <th><%= "# Current \nAssignments" %></th>
+        <th class="align_center"><%= "# Current \nAssignments".gsub(/\n/, '<br/>').html_safe %></th>
+        <th class="align_center">Edit</th>
       </thead>
       <% for officer in @unit_officers %>
         <tr>
           <td><%= link_to officer.proper_name, officer_path(officer) %></td>
           <td><%= officer.rank %></td>
-          <td><%= officer.assignments.current.count %></td>
+          <td class="align_center"><%= officer.assignments.current.count %></td>
+
+          <% if can? :edit, officer %>
+            <td class="align_center">
+              <%= link_to edit_officer_path(officer) do %>
+                <i class="material-icons">edit</i>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </table>
 
   <br />
   <%= will_paginate @unit_officers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <br /><br />
+
+  <% if can? :new, Officer %>
+    <%= link_to(new_officer_path, class: "waves-effect waves-light btn") do %>
+      <strong>Add a New Officer</strong>
+    <% end %>
+  <% end %>
   </div>
 </div>

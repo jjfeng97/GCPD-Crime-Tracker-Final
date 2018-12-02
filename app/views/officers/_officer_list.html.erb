@@ -9,8 +9,10 @@
       <th>Name</th>
       <th>Rank</th>
 
+      <% if can? :edit, Officer %>
+        <th class="align_center">Edit</th>
+      <% end %>
 
-      <th class="align_center">Edit</th>
     </thead>
     <% for officer in officers %>
       <tr>
@@ -20,12 +22,14 @@
 
 
 
-
-        <td class="align_center">
-          <%= link_to edit_officer_path(officer) do %>
-              <i class="material-icons">edit</i>
-          <% end %>
-        </td>
+        <% if can? :edit, officer %>
+          <td class="align_center">
+            <%= link_to edit_officer_path(officer) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+          </td>
+        <% end %>
+        
       </tr>
     <% end %>
   </table>
