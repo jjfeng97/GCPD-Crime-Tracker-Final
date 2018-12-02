@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Investigations with the Most Assignments</span>
+    <% unless @big_investigations.empty? %>
+
+      <table class="striped highlight">
+        <thead>
+          <th>Investigation</th>
+          <th># Assignments</th>
+          <th>Date Added</th>
+        </thead>
+        <% for investigation_group in @big_investigations %>
+          <tr>
+            <td><%= link_to investigation_group.investigation.title, investigation_path(investigation_group.investigation) %></td>
+            <td><%= investigation_group.total_count %></td>
+            <td><%= investigation_group.investigation.date_opened.strftime("%m/%d/%y") %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end%>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Officers with the Most Assignments</span>
+    <% unless @busy_officers.empty? %>
+
+      <table class="striped highlight">
+        <thead>
+          <th>Officer</th>
+          <th># Assignments</th>
+          <th>Unit</th>
+        </thead>
+        <% for officer_group in @busy_officers %>
+          <tr>
+            <td><%= link_to officer_group.officer.proper_name, officer_path(officer_group.officer) %></td>
+            <td><%= officer_group.total_count %></td>
+            <td><%= officer_group.officer.unit.name %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end%>
+  </div>
+</div>

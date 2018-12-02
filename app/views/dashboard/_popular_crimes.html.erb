@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Most Frequently Committed Crimes</span>
+    <% unless @popular_crimes.empty? %>
+
+      <table class="striped highlight">
+        <thead>
+          <th>Crime</th>
+          <th># Investigations</th>
+          <th>Level</th>
+        </thead>
+        <% for crime_group in @popular_crimes %>
+          <tr>
+            <td><%= crime_group.crime.name %></td>
+            <td><%= crime_group.total_count %></td>
+            <td><%= crime_group.crime.felony ? "Felony" : "Misdemeanor" %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end%>
+  </div>
+</div>
