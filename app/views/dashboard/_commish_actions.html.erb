@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-content">
+  <span class="card-title">Quick Add</span>
+    <% if can? :new, Officer %>
+      <div class="card grey lighten-3">
+        <div class="card-action">
+        	<%= link_to "crime", new_crime_path %>
+        </div>
+        <div class="card-action">
+        	<%= link_to "criminal", new_criminal_path %>
+        </div>
+        <div class="card-action">
+        	<%= link_to "investigation", new_investigation_path %>
+        </div>
+        <div class="card-action">
+          <%= link_to "officer", new_officer_path %>
+        </div>
+        <div class="card-action">
+          <%= link_to "unit", new_unit_path %>
+        </div>
+        <div class="card-action">
+          <%= link_to "user", new_user_path %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+<%= render partial: "commish_sidebar" %>

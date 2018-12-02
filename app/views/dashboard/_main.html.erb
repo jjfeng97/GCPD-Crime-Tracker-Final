@@ -19,7 +19,3 @@
       <%= @officer.active ? "Yes" : "No" %><br><br><br>
   </div>
 </div>
-
-<% if current_user.role == "commish" %>
-  <%= render partial: "commish_sidebar" %>
-<% end %>
