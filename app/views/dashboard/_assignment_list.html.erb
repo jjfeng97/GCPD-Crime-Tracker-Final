@@ -1,52 +1,51 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">My Current Assignments</span>
+    <% unless @current_assignments.empty? %>
+      <% for assignment in @current_assignments %>
 
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">My Current Assignments</span>
-      <% unless @current_assignments.empty? %>
-        <% for assignment in @current_assignments %>
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">add</i>
+                <%= assignment.investigation.title %> (started on <%= assignment.start_date.strftime("%m/%d/%y") %>)
+            </div>
 
-          <ul class="collapsible">
-            <li>
-              <div class="collapsible-header"><i class="material-icons">add</i>
-                  <%= assignment.investigation.title %> (started on <%= assignment.start_date.strftime("%m/%d/%y") %>)
+            <div class="collapsible-body"><span>
+              <div class="card-action">
+                <%= link_to "Go to Investigation", investigation_path(assignment.investigation) %>
               </div>
 
-              <div class="collapsible-body"><span>
+              <% unless assignment.investigation.investigation_notes.empty? %>
+                <table class="striped highlight">
+                  <thead>
+                    <th>Note</th>
+                    <th>Date</th>
+                  </thead>
+                  <% for note in assignment.investigation.investigation_notes %>
+                    <tr>
+                      <td><%= note.content %></td>
+                      <td><%= note.date %></td>
+
+                      <% if can? :edit, note and note.officer == current_user.officer %>
+                        <td class="align_center">
+                          <%= link_to edit_investigation_note_path(note) do %>
+                              <i class="material-icons">edit</i>
+                          <% end %>
+                        </td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+
+              <% if can? :new, InvestigationNote %>
                 <div class="card-action">
-                  <%= link_to "Go to Investigation", investigation_path(assignment.investigation) %>
+                  <%= link_to "Add a new note", new_investigation_note_path(investigation_id: assignment.investigation.id, officer_id: current_user.officer.id, from: "dashboard") %>
                 </div>
-
-                <% unless assignment.investigation.investigation_notes.empty? %>
-                  <table class="striped highlight">
-                    <thead>
-                      <th>Note</th>
-                      <th>Date</th>
-                    </thead>
-                    <% for note in assignment.investigation.investigation_notes %>
-                      <tr>
-                        <td><%= note.content %></td>
-                        <td><%= note.date %></td>
-
-                        <% if can? :edit, note and note.officer == current_user.officer %>
-                          <td class="align_center">
-                            <%= link_to edit_investigation_note_path(note) do %>
-                                <i class="material-icons">edit</i>
-                            <% end %>
-                          </td>
-                        <% end %>
-                      </tr>
-                    <% end %>
-                  </table>
-                <% end %>
-
-                <% if can? :new, InvestigationNote %>
-                  <div class="card-action">
-                    <%= link_to "Add a new note", new_investigation_note_path(investigation_id: assignment.investigation.id, officer_id: current_user.officer.id, from: "dashboard") %>
-                  </div>
-                <% end %>
-              </span></div>
-            </li>
-          </ul>
+              <% end %>
+            </span></div>
+          </li>
+        </ul>
 
       <% end %>
 
@@ -57,17 +56,17 @@
         </div>
         <% end %>
       <% end %>
-      
-    </div>
-  </div>
-<% else%>
-  <% if @officer.active %>
-    <% if can? :new, Assignment %>
-      <div class="card grey lighten-3">
-        <div class="card-action">
-          <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id, from: "dashboard") %>
-        </div>
-      </div>
+
+    <% else %>
+      <% if @officer.active %>
+        <% if can? :new, Assignment %>
+          <div class="card grey lighten-3">
+            <div class="card-action">
+              <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id, from: "dashboard") %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end%>
+  </div>
+</div>

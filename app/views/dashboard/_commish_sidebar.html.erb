@@ -2,11 +2,11 @@
   <div class="card-content">
     Total Number of Criminals in the GCPD System:
     <h1><%= Criminal.count %></h1>
-    Total Number of Investigations in the GCPD System:
-    <h1><%= Investigation.count %></h1>
-    Total Number of Officers in the GCPD System:
-    <h1><%= Officer.count %></h1>
-    Total Number of Units in the GCPD System:
-    <h1><%= Unit.count %></h1>
+    Total Number of Open Investigations in the GCPD System:
+    <h1><%= Investigation.is_open.count %></h1>
+    Total Number of Active Officers in the GCPD System:
+    <h1><%= Officer.active.count %></h1>
+    Total Number of Active Units in the GCPD System:
+    <h1><%= Unit.active.count %></h1>
   </div>
 </div>

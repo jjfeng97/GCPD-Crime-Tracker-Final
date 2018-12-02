@@ -1,0 +1,35 @@
+
+<div class="card">
+  <div class="card-content">
+
+    <table>
+      <thead>
+        <th>Number of Active Officers</th>
+        <th>Number of Current Assignments</th>
+      </thead>
+        <tr>
+          <td><%= @unit.officers.active.count %></td>
+          <td><%= @unit.assignments.current.count %></td>
+        </tr>
+    </table>
+
+
+    <table class="striped highlight">
+      <thead>
+        <th>Officer</th>
+        <th>Rank</th>
+        <th><%= "# Current \nAssignments" %></th>
+      </thead>
+      <% for officer in @unit_officers %>
+        <tr>
+          <td><%= link_to officer.proper_name, officer_path(officer) %></td>
+          <td><%= officer.rank %></td>
+          <td><%= officer.assignments.current.count %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  <br />
+  <%= will_paginate @unit_officers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  </div>
+</div>

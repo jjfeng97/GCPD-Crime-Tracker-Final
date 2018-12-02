@@ -3,10 +3,7 @@
     <h5>My Profile</h5><br />
 
     <b>Current Unit:&nbsp;&nbsp;</b>
-      <%= link_to @officer.unit.name, unit_path(@officer.unit) %>
-      <% if @officer.user.role?(:chief) %>
-        &nbsp;&nbsp;<i>*Unit Chief</i>
-      <% end%>     
+      <%= link_to @officer.unit.name, unit_path(@officer.unit) %>    
       <br /><br />
 
     <b>Current Rank:&nbsp;&nbsp;</b>

@@ -8,12 +8,14 @@ class DashboardController < ApplicationController
   		@current_assignments = @officer.assignments.current.chronological.to_a.reverse
     	@past_assignments = @officer.assignments.past.chronological.to_a.reverse
     elsif current_user.role == "chief"
-  		@current_assignments = @officer.assignments.current.chronological.to_a.reverse
-    	@past_assignments = @officer.assignments.past.chronological.to_a.reverse
+    	@unit = current_user.officer.unit
+  		@unit_officers = @unit.officers.alphabetical.active.paginate(page: params[:page]).per_page(5)
     elsif current_user.role == "commish"
-    	@recent_investigations = Investigation.is_open.chronological.to_a.reverse.slice(0, 5)
-    	@recent_assignments = Assignment.current.chronological.to_a.reverse.slice(0, 5)
-    	@recent_suspects = Suspect.current.chronological.to_a.reverse.slice(0, 5)
+    	@recent_investigations = Investigation.is_open.where(['date_opened > ?', 30.days.ago]).chronological.to_a.reverse
+    	@recent_assignments = Assignment.current.where(['start_date > ?', 30.days.ago]).chronological.to_a.reverse
+    	@recent_suspects = Suspect.current.where(['added_on > ?', 30.days.ago]).chronological.to_a.reverse
+    	@popular_crimes = s
+    	@busy_officers
     end
   end
 
