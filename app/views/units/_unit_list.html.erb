@@ -7,6 +7,8 @@
   <table class="striped highlight">
     <thead>
       <th>Unit</th>
+      <th># Active Officers</th>
+      <th># Current Investigations</th>
       <% if can? :edit, Unit %>
         <th class="align_center">Edit</th>
       <% end %>
@@ -15,10 +17,8 @@
       <tr>
         <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
         <td><%= link_to unit.name, unit_path(unit) %></td>
-
-
-
-
+        <td><%= unit.officers.count %></td>
+        <td><%= unit.assignments.count %></td>
 
         <% if can? :edit, unit %>
           <td class="align_center">

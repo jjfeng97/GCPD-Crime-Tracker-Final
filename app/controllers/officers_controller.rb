@@ -49,10 +49,8 @@ class OfficersController < ApplicationController
     respond_to do |format|
       if @officer.update_attributes(officer_params)
         format.html { redirect_to @officer, notice: "Successfully updated all information for #{@officer.proper_name}." }
-        
       else
-        format.html { render :action => "edit" }
-        
+        format.html { render :action => "edit" }  
       end
     end
   end
@@ -90,7 +88,7 @@ class OfficersController < ApplicationController
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def officer_params
-    params.require(:officer).permit(:first_name, :last_name, :rank, :ssn, :active, :unit_id)
+    params.require(:officer).permit(:first_name, :last_name, :rank, :ssn, :active, :unit_id, :active, :username, :password, :password_confirmation, :role)
   end
 
   def user_params
