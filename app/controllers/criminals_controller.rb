@@ -5,7 +5,9 @@ class CriminalsController < ApplicationController
 
   def index
     @felons = Criminal.prior_record.alphabetical.paginate(page: params[:page]).per_page(10)
+    @nonfelons = Criminal.all.where(convicted_felon: false).alphabetical.paginate(page: params[:page]).per_page(10)
     @superpowers = Criminal.enhanced.alphabetical.paginate(page: params[:page]).per_page(10)
+    @no_superpowers = Criminal.all.where(enhanced_powers: false).alphabetical.paginate(page: params[:page]).per_page(10)
     @criminals = Criminal.all.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 

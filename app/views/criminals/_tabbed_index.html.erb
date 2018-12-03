@@ -1,8 +1,24 @@
-<div id="tabbed">
+<div id="tabbed_five">
   <tabs>
 
     <tab name="all criminals" v-bind:selected="true">
       <%= render :partial => "criminal_list", locals: {criminals: @criminals, state: ''} %>
+    </tab>
+
+    <tab name="felons">
+      <%= render :partial => "criminal_list", locals: {criminals: @felons, state: 'Felon'} %>
+    </tab>
+
+    <tab name="non-felons">
+      <%= render :partial => "criminal_list", locals: {criminals: @nonfelons, state: 'Non-Felon'} %>
+    </tab>
+
+    <tab name="with superpowers">
+      <%= render :partial => "criminal_list", locals: {criminals: @superpowers, state: 'Superpower'} %>
+    </tab>
+
+    <tab name="no superpowers">
+      <%= render :partial => "criminal_list", locals: {criminals: @no_superpowers, state: 'Non-Superpower'} %>
     </tab>
 
   </tabs>
