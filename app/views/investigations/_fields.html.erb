@@ -1,7 +1,23 @@
 <%= f.input :title, label_html: { class: 'active' } %>
 <%= f.input :description, label_html: { class: 'active' } %>
 <%= f.input :crime_location, label_html: { class: 'active' } %>
-<%= f.input :date_opened, label_html: { class: 'active' } %>
-<%= f.input :date_closed, label_html: { class: 'active' } %>
+
+<% if controller.action_name == "edit" %>
+	<%= f.input :date_opened, input_html: { value: @investigation.date_opened.strftime("%d %B, %Y") }, label_html: { class: 'active' } %>
+<% else %>
+	<%= f.input :date_opened, input_html: { value: Date.today.strftime("%d %B, %Y") }, label_html: { class: 'active' } %>
+<% end %>
+
+<% if controller.action_name == "edit" %>
+	<%= f.input :date_closed, label_html: { class: 'active' } %>
+<% else %>
+	<%= f.input :date_closed, as: :hidden, input_html: { value: nil } %>
+<% end %>
+
 <%= f.input :batman_involved %>
-<%= f.input :solved %>
+
+<% if controller.action_name == "edit" %>
+	<%= f.input :solved %>
+<% else %>
+	<%= f.input :solved, as: :hidden, input_html: { value: false } %>
+<% end %>

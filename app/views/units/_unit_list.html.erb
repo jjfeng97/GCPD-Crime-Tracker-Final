@@ -17,8 +17,8 @@
       <tr>
         <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
         <td><%= link_to unit.name, unit_path(unit) %></td>
-        <td><%= unit.officers.count %></td>
-        <td><%= unit.assignments.count %></td>
+        <td><%= unit.officers.active.count %></td>
+        <td><%= unit.assignments.current.count %></td>
 
         <% if can? :edit, unit %>
           <td class="align_center">

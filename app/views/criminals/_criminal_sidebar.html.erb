@@ -1,3 +1,16 @@
-<%= render :partial => "current_suspects" %>
-<br />
-<%= render :partial => "previous_suspects" %>
+
+<div id="tabbed">
+  <tabs>
+
+    <tab name="current suspects" v-bind:selected="true">
+      <%= render :partial => "current_suspects" %>
+    </tab>
+
+    <% unless @previous_suspects.empty? %>
+	    <tab name="previous suspects">
+	      <%= render :partial => "previous_suspects" %>
+	    </tab>
+    <% end %>
+
+  </tabs>
+</div>

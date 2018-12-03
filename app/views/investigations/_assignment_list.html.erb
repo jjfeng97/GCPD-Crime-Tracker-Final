@@ -1,72 +1,84 @@
-<% unless @current_assignments.empty? %>
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">Current Assignments</span>
-      <table class="lined">
-        <thead>
-          <th>Officer</th>
-          <th>Starting</th>
-        </thead>
-          <% for assignment in @current_assignments %>
-            <tr>
-              <td>
-                <% if can? :terminate, Assignment %>
-                  <%= link_to(terminate_assignment_path(assignment, from: "investigation"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to terminate this assignment?' }) do %>
-                    x&nbsp;&nbsp;
-                  <% end %>
+<div id="tabbed">
+  <tabs>
+
+    <tab name="current assignments" v-bind:selected="true">
+      <% unless @current_assignments.empty? %>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Current Assignments</span>
+            <table class="lined">
+              <thead>
+                <th>Officer</th>
+                <th>Starting</th>
+              </thead>
+                <% for assignment in @current_assignments %>
+                  <tr>
+                    <td>
+                      <% if can? :terminate, Assignment %>
+                        <%= link_to(terminate_assignment_path(assignment, from: "investigation"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to terminate this assignment?' }) do %>
+                          x&nbsp;&nbsp;
+                        <% end %>
+                      <% end %>
+                      &nbsp;<%= link_to assignment.officer.name, officer_path(assignment.officer) %>
+                    </td>
+                    <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+                  </tr>
                 <% end %>
-                &nbsp;<%= link_to assignment.officer.name, officer_path(assignment.officer) %>
-              </td>
-              <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
-            </tr>
-          <% end %>
-      </table>
+            </table>
 
-		<%# allow to add a new assignment might be nice %>
-      <% if @investigation.date_closed.nil? %>
-        <% if can? :new, Assignment %>
-        <div class="card-action">
-          <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id, from: "investigation") %>
+          <%# allow to add a new assignment might be nice %>
+            <% if @investigation.date_closed.nil? %>
+              <% if can? :new, Assignment %>
+              <div class="card-action">
+                <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id, from: "investigation") %>
+              </div>
+              <% end %>
+            <% end %>
+
+          </div>
         </div>
-        <% end %>
-      <% end %>
+      <% else%>
 
-    </div>
-  </div>
-<% else%>
-
-	<%# allow to add a new assignment might be nice %>
-  <% if @investigation.date_closed.nil? %>
-    <% if can? :new, Assignment %>
-    <div class="card grey lighten-3">
-      <div class="card-action">
-        <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id, from: "investigation") %>
-      </div>
-    </div>
-    <% end %>
-  <% end %>
-
-<% end%>
-
-
-<% unless @past_assignments.empty? %>
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">Past Assignments</span>
-      <table class="lined">
-        <thead>
-          <th>Officer</th>
-          <th>Starting</th>
-        </thead>
-          <% for assignment in @past_assignments %>
-            <tr>
-              <td>
-                &nbsp;<%= link_to assignment.officer.name, officer_path(assignment.officer) %>
-              </td>
-              <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
-            </tr>
+        <%# allow to add a new assignment might be nice %>
+        <% if @investigation.date_closed.nil? %>
+          <% if can? :new, Assignment %>
+          <div class="card grey lighten-3">
+            <div class="card-action">
+              <%= link_to "Add a new assignment", new_assignment_path(investigation_id: @investigation.id, from: "investigation") %>
+            </div>
+          </div>
           <% end %>
-      </table>
-    </div>
-  </div>
-<% end%>
+        <% end %>
+
+      <% end%>
+
+    </tab>
+
+    <tab name="past assignments">
+      <% unless @past_assignments.empty? %>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Past Assignments</span>
+            <table class="lined">
+              <thead>
+                <th>Officer</th>
+                <th>Starting</th>
+                <th>Ending</th>
+              </thead>
+                <% for assignment in @past_assignments %>
+                  <tr>
+                    <td>
+                      &nbsp;<%= link_to assignment.officer.name, officer_path(assignment.officer) %>
+                    </td>
+                    <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+                    <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
+                  </tr>
+                <% end %>
+            </table>
+          </div>
+        </div>
+      <% end %>
+    </tab>
+
+  </tabs>
+</div>

@@ -1,2 +1,6 @@
 <%= f.input :name, label_html: { class: 'active' } %>
-<%= f.input :active %>
+<% if controller.action_name == "edit" %>
+	<%= f.input :active %>
+<% else %>
+	<%= f.input :active, as: :hidden, input_html: { value: true } %>
+<% end %>

@@ -1,74 +1,87 @@
-<% unless @current_suspects.empty? %>
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">Current Suspects</span>
-      <table class="lined">
-        <thead>
-          <th>Criminal</th>
-          <th>Starting</th>
-        </thead>
-          <% for suspect in @current_suspects %>
-            <tr>
-              <td>
-                <% if can? :terminate, Suspect %>
-                  <%= link_to(terminate_suspect_path(suspect, from: "investigation"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to remove this suspect from the investigation?' }) do %>
-                    x&nbsp;&nbsp;
-                  <% end %>
+
+
+<ul class="collapsible">
+  <li>
+    <div class="collapsible-header active" class = "active"><i class="material-icons">filter_drama</i>Current Suspects</div>
+    <div class="collapsible-body"><span>
+      <% unless @current_suspects.empty? %>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Current Suspects</span>
+            <table class="lined">
+              <thead>
+                <th>Criminal</th>
+                <th>Starting</th>
+              </thead>
+                <% for suspect in @current_suspects %>
+                  <tr>
+                    <td>
+                      <% if can? :terminate, Suspect %>
+                        <%= link_to(terminate_suspect_path(suspect, from: "investigation"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to remove this suspect from the investigation?' }) do %>
+                          x&nbsp;&nbsp;
+                        <% end %>
+                      <% end %>
+                      &nbsp;<%= link_to suspect.criminal.name, criminal_path(suspect.criminal) %>
+                    </td>
+                    <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
+                  </tr>
                 <% end %>
-                &nbsp;<%= link_to suspect.criminal.name, criminal_path(suspect.criminal) %>
-              </td>
-              <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
-            </tr>
-          <% end %>
-      </table>
+            </table>
 
-		<%# allow to add a new assignment might be nice %>
-      <% if @investigation.date_closed.nil? %>
-        <% if can? :new, Suspect %>
-        <div class="card-action">
-          <%= link_to "Add a new suspect", new_suspect_path(investigation_id: @investigation.id, from: "investigation") %>
+          <%# allow to add a new assignment might be nice %>
+            <% if @investigation.date_closed.nil? %>
+              <% if can? :new, Suspect %>
+              <div class="card-action">
+                <%= link_to "Add a new suspect", new_suspect_path(investigation_id: @investigation.id, from: "investigation") %>
+              </div>
+              <% end %>
+            <% end %>
+
+          </div>
         </div>
-        <% end %>
-      <% end %>
+      <% else%>
 
-    </div>
-  </div>
-<% else%>
-
-	<%# allow to add a new assignment might be nice %>
-  <% if @investigation.date_closed.nil? %>
-    <% if can? :new, Suspect %>
-    <div class="card grey lighten-3">
-      <div class="card-action">
-        <%= link_to "Add a new suspect", new_suspect_path(investigation_id: @investigation.id, from: "investigation") %>
-      </div>
-    </div>
-    <% end %>
-  <% end %>
-
-<% end%>
-
-
-<% unless @previous_suspects.empty? %>
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">Previous Suspects</span>
-      <table class="lined">
-        <thead>
-          <th>Criminal</th>
-          <th>Starting</th>
-          <th>Ending</th>
-        </thead>
-          <% for suspect in @previous_suspects %>
-            <tr>
-              <td>
-                &nbsp;<%= link_to suspect.criminal.name, criminal_path(suspect.criminal) %>
-              </td>
-              <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
-              <td><%= suspect.dropped_on.strftime("%m/%d/%y") %></td>
-            </tr>
+        <%# allow to add a new assignment might be nice %>
+        <% if @investigation.date_closed.nil? %>
+          <% if can? :new, Suspect %>
+          <div class="card grey lighten-3">
+            <div class="card-action">
+              <%= link_to "Add a new suspect", new_suspect_path(investigation_id: @investigation.id, from: "investigation") %>
+            </div>
+          </div>
           <% end %>
-      </table>
-    </div>
-  </div>
-<% end%>
+        <% end %>
+
+      <% end%>
+    </span></div>
+  </li>
+
+  <li>
+    <div class="collapsible-header"><i class="material-icons">place</i>Previous Suspects</div>
+    <div class="collapsible-body"><span>
+      <% unless @previous_suspects.empty? %>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Previous Suspects</span>
+            <table class="lined">
+              <thead>
+                <th>Criminal</th>
+                <th>Starting</th>
+                <th>Ending</th>
+              </thead>
+                <% for suspect in @previous_suspects %>
+                  <tr>
+                    <td>
+                      &nbsp;<%= link_to suspect.criminal.name, criminal_path(suspect.criminal) %>
+                    </td>
+                    <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
+                    <td><%= suspect.dropped_on.strftime("%m/%d/%y") %></td>
+                  </tr>
+                <% end %>
+            </table>
+          </div>
+        </div>
+      <% end%>
+    </span></div>
+  </li>
+</ul>
