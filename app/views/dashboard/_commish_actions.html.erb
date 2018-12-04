@@ -1,30 +1,12 @@
-<div class="card">
-  <div class="card-content">
-  <span class="card-title">Quick Add</span>
-    <% if can? :new, Officer %>
-      <div class="card grey lighten-3">
-        <div class="card-action">
-        	<%= link_to "crime", new_crime_path %>
-        </div>
-        <div class="card-action">
-        	<%= link_to "criminal", new_criminal_path %>
-        </div>
-        <div class="card-action">
-        	<%= link_to "investigation", new_investigation_path %>
-        </div>
-        <div class="card-action">
-          <%= link_to "officer", new_officer_path %>
-        </div>
-        <div class="card-action">
-          <%= link_to "unit", new_unit_path %>
-        </div>
-        <div class="card-action">
-          <%= link_to "user", new_user_path %>
-        </div>
-      </div>
-    <% end %>
 
-  </div>
-</div>
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Quick Add</h4></li>
+  <li class="collection-item"><div>Crime<a href="crimes/new" class="secondary-content"><i class="material-icons">add_circle</i></a></div></li>
+  <li class="collection-item"><div>Criminal<a href="criminals/new" class="secondary-content"><i class="material-icons">add_circle</i></a></div></li>
+  <li class="collection-item"><div>Investigation<a href="investigations/new" class="secondary-content"><i class="material-icons">add_circle</i></a></div></li>
+  <li class="collection-item"><div>Officer<a href="officers/new" class="secondary-content"><i class="material-icons">add_circle</i></a></div></li>
+  <li class="collection-item"><div>Unit<a href="units/new" class="secondary-content"><i class="material-icons">add_circle</i></a></div></li>
+  <li class="collection-item"><div>User<a href="users/new" class="secondary-content"><i class="material-icons">add_circle</i></a></div></li>
+</ul>
 
 <%= render partial: "commish_sidebar" %>
