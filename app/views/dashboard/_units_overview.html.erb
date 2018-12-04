@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-content">
+
+    <h4>Active Units in GCPD</h4>
+
+    <% if @units.empty? %>
+      <p>There are no active units at this time.</p>
+    <% else %>
+
+      <table class="striped highlight">
+        <thead>
+          <th>Unit</th>
+          <th># Active Officers</th>
+          <th># Current Investigations</th>
+          <% if can? :edit, Unit %>
+            <th class="align_center">Edit</th>
+          <% end %>
+        </thead>
+        <% for unit in @units %>
+          <tr>
+            <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
+            <td><%= link_to unit.name, unit_path(unit) %></td>
+            <td><%= unit.officers.active.count %></td>
+            <td><%= unit.assignments.current.count %></td>
+
+            <% if can? :edit, unit %>
+              <td class="align_center">
+                <%= link_to edit_unit_path(unit) do %>
+                  <i class="material-icons">edit</i>
+                <% end %>
+              </td>
+            <% end %>
+
+          </tr>
+        <% end %>
+      </table>
+      <p class="supertiny"></p>
+      <br />
+      <%= will_paginate @units, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+    <% end %>
+
+    </br>
+    <%= render :partial => "partials/add_new_object", locals: {model_name: 'unit'} %>
+
+  </div>
+</div>

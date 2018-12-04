@@ -13,6 +13,7 @@ class DashboardController < ApplicationController
   		@unit_officers = @unit.officers.alphabetical.active.paginate(page: params[:page]).per_page(5)
 
     elsif current_user.role == "commish"
+      @units = Unit.active.paginate(page: params[:page]).per_page(5)
     	@recent_investigations = Investigation.is_open.where(['date_opened > ?', 30.days.ago]).chronological.to_a.reverse
     	@recent_assignments = Assignment.current.where(['start_date > ?', 30.days.ago]).chronological.to_a.reverse
     	@recent_suspects = Suspect.current.where(['added_on > ?', 30.days.ago]).chronological.to_a.reverse

@@ -193,6 +193,12 @@ input[type=text].search {
 /********** MEDIA ********/
 .img_left {
   float: left;
+  padding-right: 40px;
+}
+
+.img_left_nav {
+  float: left;
+  padding-top: 7px;
   padding-right: 10px;
 }
 
@@ -245,6 +251,10 @@ li.no_bullet {
 
 .tab.col.s4.five {
   width: 20%;
+}
+
+.tab.col.s4.three {
+  width: 33.3333333%;
 }
 
 

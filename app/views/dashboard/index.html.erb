@@ -17,9 +17,9 @@
 	                                                   sidebar: "main"} %> 
 
 <% elsif current_user.role == "commish" %>
-	<%= render partial: "partials/dashboard", locals: {primary: "popular_tabs", 
+	<%= render partial: "partials/dashboard", locals: {primary: "units_overview", 
 	                                                   secondary: "recent_tabs",
-	                                                   tertiary: nil,
+	                                                   tertiary: "popular_tabs",
 	                                                   sidebar: "commish_actions"} %>
 
 <% end %>
