@@ -1,8 +1,6 @@
-
-
 <ul class="collapsible">
   <li>
-    <div class="collapsible-header active" class = "active"><i class="material-icons">filter_drama</i>Current Suspects</div>
+    <div class="collapsible-header active" class = "active"><i class="material-icons">arrow_drop_down</i>Current Suspects</div>
     <div class="collapsible-body"><span>
       <% unless @current_suspects.empty? %>
         <div class="card">
@@ -56,32 +54,32 @@
     </span></div>
   </li>
 
-  <li>
-    <div class="collapsible-header"><i class="material-icons">place</i>Previous Suspects</div>
-    <div class="collapsible-body"><span>
-      <% unless @previous_suspects.empty? %>
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Previous Suspects</span>
-            <table class="lined">
-              <thead>
-                <th>Criminal</th>
-                <th>Starting</th>
-                <th>Ending</th>
-              </thead>
-                <% for suspect in @previous_suspects %>
-                  <tr>
-                    <td>
-                      &nbsp;<%= link_to suspect.criminal.name, criminal_path(suspect.criminal) %>
-                    </td>
-                    <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
-                    <td><%= suspect.dropped_on.strftime("%m/%d/%y") %></td>
-                  </tr>
-                <% end %>
-            </table>
+  <% unless @previous_suspects.empty? %>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>Previous Suspects</div>
+      <div class="collapsible-body"><span>
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Previous Suspects</span>
+              <table class="lined">
+                <thead>
+                  <th>Criminal</th>
+                  <th>Starting</th>
+                  <th>Ending</th>
+                </thead>
+                  <% for suspect in @previous_suspects %>
+                    <tr>
+                      <td>
+                        &nbsp;<%= link_to suspect.criminal.name, criminal_path(suspect.criminal) %>
+                      </td>
+                      <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
+                      <td><%= suspect.dropped_on.strftime("%m/%d/%y") %></td>
+                    </tr>
+                  <% end %>
+              </table>
+            </div>
           </div>
-        </div>
-      <% end%>
-    </span></div>
-  </li>
+      </span></div>
+    </li>
+  <% end%>
 </ul>

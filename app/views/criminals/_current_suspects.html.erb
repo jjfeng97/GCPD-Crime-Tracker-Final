@@ -23,7 +23,7 @@
       </table>
       <% if can? :new, Suspect %>
       <div class="card-action">
-        <%= link_to "Add a new suspect", new_suspect_path(criminal_id: @criminal.id) %>
+        <%= link_to "Add as new suspect to investigation", new_suspect_path(criminal_id: @criminal.id) %>
       </div>
     <% end %>
     </div>
@@ -32,7 +32,7 @@
   <% if can? :new, Suspect %>
     <div class="card grey lighten-3">
       <div class="card-action">
-        <%= link_to "Add a new suspect", new_suspect_path(criminal_id: @criminal.id) %>
+        <%= link_to "Add as new suspect to investigation", new_suspect_path(criminal_id: @criminal.id) %>
       </div>
     </div>
   <% end %>

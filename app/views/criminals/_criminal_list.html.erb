@@ -7,6 +7,8 @@
   <table class="striped highlight">
     <thead>
       <th>Criminal</th>
+      <th>Felon?</th>
+      <th>Has Superpower?</th>
 
       <% if can? :edit, Criminal %>
         <th class="align_center">Edit</th>
@@ -16,6 +18,8 @@
       <tr>
         <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
         <td><%= link_to criminal.name, criminal_path(criminal) %></td>
+        <td><%= criminal.convicted_felon ? "Yes" : "No" %></td>
+        <td><%= criminal.enhanced_powers ? "Yes" : "No" %></td>
 
         <td class="align_center">
           <% if can? :edit, Criminal %>

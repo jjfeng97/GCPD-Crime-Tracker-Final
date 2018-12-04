@@ -25,7 +25,7 @@ class CriminalsController < ApplicationController
 
   def create
     @criminal = Criminal.new(criminal_params)
-    if @officer.save
+    if @criminal.save
       flash[:notice] = "Successfully created #{@criminal.proper_name}."
       redirect_to criminal_path(@criminal) 
     else
@@ -45,10 +45,11 @@ class CriminalsController < ApplicationController
 
   def destroy
     if @criminal.destroy
-      format.html { redirect_to criminals_path, notice: "Successfully deleted #{@criminal.proper_name}." }
+      flash[:notice] = "Successfully deleted #{@criminal.proper_name}."
+      redirect_to criminals_path
     else
       @current_suspects = @criminal.suspects.current.chronological
-      @previous_suspects = @criminal.suspects.alphabetical.to_a - @current_suspects
+      @previous_suspects = @criminal.suspects.chronological.to_a - @current_suspects
       render action: 'show'
     end
   end
