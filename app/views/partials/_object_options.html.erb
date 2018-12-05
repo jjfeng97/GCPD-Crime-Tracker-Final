@@ -15,14 +15,42 @@
     &nbsp;&nbsp;
   <% end %>
   
+
   <% if can?(:destroy, object) && controller.respond_to?(:destroy) %>
-    <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert') do %>
-        &nbsp;<%= "Delete #{opt}" %>
+
+    <% if model_name == "criminal" %> 
+      <% if (object.convicted_felon or object.enhanced_powers or object.suspects.count > 0) %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert disabled') do %>
+            &nbsp;<%= "Delete #{opt}" %>
+        <% end %>
+      <% else %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert') do %>
+            &nbsp;<%= "Delete #{opt}" %>
+        <% end %>
+      <% end %>
+
+    <% elsif model_name == "unit" %> 
+      <% if object.officers.count > 0 %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert disabled') do %>
+            &nbsp;<%= "Delete #{opt}" %>
+        <% end %>
+      <% else %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert') do %>
+            &nbsp;<%= "Delete #{opt}" %>
+        <% end %>
+      <% end %>
+
+    <% else %>
+      <% if can?(:destroy, object) && controller.respond_to?(:destroy) %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert') do %>
+            &nbsp;<%= "Delete #{opt}" %>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 
-    <%# This is just to handle the extra case of closing investigations  %>
-    <% if can?(:close, object) && controller.respond_to?(:close) && object.date_closed.nil? %>
+  <%# This is just to handle the extra case of closing investigations  %>
+  <% if can?(:close, object) && controller.respond_to?(:close) && object.date_closed.nil? %>
     <%= link_to(eval("close_#{model_name}_path(object)"), method: 'patch', data: {confirm: "Are you sure you want to close this #{opt} as of today?"}, class: 'waves-effect waves-light btn btn-alert') do %>
         &nbsp;<%= "Close Now" %>
     <% end %>

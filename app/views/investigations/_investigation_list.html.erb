@@ -16,7 +16,12 @@
     </thead>
     <% for investigation in investigations %>
       <tr>
-        <td><%= link_to investigation.title, investigation_path(investigation) %></td>
+        <% if can? :show, investigation %>
+          <td><%= link_to investigation.title, investigation_path(investigation) %></td>
+        <% else %>
+          <td><%= investigation.title %></td>
+        <% end %>
+
         <td><%= display_date(investigation, state) %></td>
         <td><%= investigation.solved ? "Yes" : "No" %></td>
 

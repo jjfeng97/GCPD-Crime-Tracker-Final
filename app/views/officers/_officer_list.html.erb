@@ -16,7 +16,12 @@
     </thead>
     <% for officer in officers %>
       <tr>
-        <td><%= link_to officer.name, officer_path(officer) %></td>
+        <% if can? :show, officer %>
+          <td><%= link_to officer.name, officer_path(officer) %></td>
+        <% else %>
+          <td><%= officer.name %></td>
+        <% end %>
+
         <td><%= officer.rank %></td>
 
 

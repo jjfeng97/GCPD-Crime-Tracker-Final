@@ -16,7 +16,12 @@
     </thead>
     <% for criminal in criminals %>
       <tr>
-        <td><%= link_to criminal.name, criminal_path(criminal) %></td>
+        <% if can? :show, criminal %>
+          <td><%= link_to criminal.name, criminal_path(criminal) %></td>
+        <% else %>
+          <td><%= criminal.name %></td>
+        <% end %>
+
         <td><%= criminal.convicted_felon ? "Yes" : "No" %></td>
         <td><%= criminal.enhanced_powers ? "Yes" : "No" %></td>
 

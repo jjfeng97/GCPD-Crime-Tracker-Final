@@ -15,7 +15,7 @@
     </thead>
     <% for crime in crimes %>
       <tr>
-        <td><%= best_in_place crime, :name, as: :input %><%# crime.name %></td>
+        <td><%= best_in_place_if (can? :edit, crime), crime, :name, as: :input %><%# crime.name %></td>
         <td><%= crime.felony ? "Felony" : "Misdemeanor" %></td>
 
 

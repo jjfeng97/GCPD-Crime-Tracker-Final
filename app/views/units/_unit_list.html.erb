@@ -16,7 +16,12 @@
     <% for unit in units %>
       <tr>
         <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
-        <td><%= link_to unit.name, unit_path(unit) %></td>
+        <% if can? :show, unit %>
+          <td><%= link_to unit.name, unit_path(unit) %></td>
+        <% else %>
+          <td><%= unit.name %></td>
+        <% end %>
+        
         <td><%= unit.officers.active.count %></td>
         <td><%= unit.assignments.current.count %></td>
 
