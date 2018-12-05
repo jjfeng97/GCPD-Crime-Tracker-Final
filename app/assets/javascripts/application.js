@@ -29,10 +29,12 @@ $(function() {
    });
 });
 
+
 // Best in place functionality
 $(document).ready(function() {
   jQuery(".best_in_place").best_in_place();
 });
+
 
 // Search submit on enter
 $(document).ready(function() {
@@ -46,3 +48,8 @@ $(document).ready(function() {
   }
 });
 
+
+// Floating action button
+$(document).ready(function(){
+  $('.fixed-action-btn').floatingActionButton();
+});

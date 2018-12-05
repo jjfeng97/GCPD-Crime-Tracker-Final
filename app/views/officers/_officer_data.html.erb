@@ -13,6 +13,9 @@
 
     <b>Current Rank:&nbsp;&nbsp;</b>
       <%= @officer.rank %><br /><br />
+
+    <b>Current Role:&nbsp;&nbsp;</b>
+      <%= @officer.user.role.capitalize %><br /><br />
       
     <b>SSN:&nbsp;&nbsp;</b>
       <%= best_in_place_if (can? :edit, @officer), @officer, :ssn, as: :input %><br /><br />
@@ -21,6 +24,11 @@
       <%= @officer.user.active ? @officer.user.username : "n/a" %><br /><br />
 
     <b>Active with GCPD?&nbsp;&nbsp;</b>
-      <%= @officer.active ? "Yes" : "No" %><br><br>
+      <% if can? :edit, @officer %>
+        <%= best_in_place @officer, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %><br><br>
+      <% else %>
+        <%= @officer.active ? "Yes" : "No" %><br /><br />
+      <% end %>
+
   </div>
 </div>

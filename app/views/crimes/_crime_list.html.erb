@@ -16,11 +16,14 @@
     <% for crime in crimes %>
       <tr>
         <td><%= best_in_place_if (can? :edit, crime), crime, :name, as: :input %><%# crime.name %></td>
-        <td><%= crime.felony ? "Felony" : "Misdemeanor" %></td>
 
-
-
-
+        <td>
+          <% if can? :edit, crime %>
+            <%= best_in_place crime, :felony, as: :checkbox, collection: {false: "Misdemeanor", true: "Felony"} %>
+          <% else %>
+            <%= crime.felony ? "Felony" : "Misdemeanor" %>
+          <% end %>
+        </td>
 
         <% if can? :edit, crime %>
           <td class="align_center">

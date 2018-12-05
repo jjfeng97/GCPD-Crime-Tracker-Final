@@ -10,5 +10,12 @@
       <%= @unit.number_of_unique_open_investigations %>
       <br /><br />
 
+    <b>Active with GCPD?&nbsp;&nbsp;</b>
+    	<% if can? :edit, @unit %>
+        <%= best_in_place @unit, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %><br><br>
+      <% else %>
+        <%= @unit.active ? "Yes" : "No" %><br /><br />
+      <% end %>
+
   </div>
 </div>

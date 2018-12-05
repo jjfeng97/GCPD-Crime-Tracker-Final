@@ -48,6 +48,7 @@ class OfficersController < ApplicationController
   def update
     respond_to do |format|
       if @officer.update_attributes(officer_params)
+        update_user_params
         format.html { redirect_to @officer, notice: "Successfully updated all information for #{@officer.proper_name}." }
         format.json { respond_with_bip(@officer) }
       else
@@ -95,5 +96,11 @@ class OfficersController < ApplicationController
 
   def user_params
     params.require(:officer).permit(:active, :username, :password, :password_confirmation, :role)
+  end
+
+  def update_user_params
+    @user = @officer.user
+    @user.role = officer_params[:role]
+    @user.save!
   end
 end

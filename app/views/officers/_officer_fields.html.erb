@@ -3,6 +3,7 @@
 <%= f.input :rank, collection: Officer::RANKS_LIST, include_blank: true %>
 
 <% if current_user.role?(:commish) %>
+  <%# f.input :role %>
   <%= f.input :role, collection: User::ROLES, include_blank: true %>
 <% end %>
 

@@ -316,3 +316,14 @@ li.no_bullet {
     color: #4f4f4f; }
   .alert-box.alert-close {
     opacity: 0; }
+
+
+/********** BEST IN PLACE ********/
+.material-icons.edit:hover {
+  visibility:visible;
+}
+
+.material-icons.edit {
+  visibility:hidden;
+}
+
