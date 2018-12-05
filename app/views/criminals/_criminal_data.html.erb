@@ -1,9 +1,11 @@
 <div class="card">
   <div class="card-content">
-    <h5>Information for <%= @criminal.name %></h5><br />
+    <h5>Information for 
+    <%= best_in_place @criminal, :first_name, as: :input %> 
+    <%= best_in_place @criminal, :last_name, as: :input %><br /><br /></h5><br />
 
     <b>Alias:&nbsp;&nbsp;</b>
-      <%= @criminal.aka %><br><br>
+      <%= best_in_place @criminal, :aka, as: :input %><br /><br />
 
     <b>Convicted Felon?&nbsp;&nbsp;</b>
       <%= @criminal.convicted_felon ? "Yes" : "No" %><br><br>

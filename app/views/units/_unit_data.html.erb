@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <h5>Information for <%= @unit.name %></h5><br />
+    <h5>Information for <%= best_in_place @unit, :name, as: :input %><br /><br /></h5><br />
 
     <b>Number of Active Officers:&nbsp;&nbsp;</b>
       <%= @unit.number_of_active_officers %>

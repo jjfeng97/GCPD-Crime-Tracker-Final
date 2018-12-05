@@ -16,7 +16,6 @@
     </thead>
     <% for criminal in criminals %>
       <tr>
-        <!-- <td><%# best_in_place unit, :name, as: :input %></td> -->
         <td><%= link_to criminal.name, criminal_path(criminal) %></td>
         <td><%= criminal.convicted_felon ? "Yes" : "No" %></td>
         <td><%= criminal.enhanced_powers ? "Yes" : "No" %></td>

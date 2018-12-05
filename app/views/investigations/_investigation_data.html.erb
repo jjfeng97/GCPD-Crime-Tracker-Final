@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <h5>Information for <%= @investigation.title %></h5><br />
+    <h5>Information for <%= best_in_place @investigation, :title, as: :input %><br /><br /></h5><br />
 
     <b>Crimes committed:&nbsp;&nbsp;</b><br />
       <% @case_crimes.sort_by{ |c| c.crime.name }.each do |ci| %> <!-- goes through crime investigations -->
@@ -17,11 +17,11 @@
       <br />
 
     <b>Location:&nbsp;&nbsp;</b>
-      <%= @investigation.crime_location %>   
+      <%= best_in_place @investigation, :crime_location, as: :input %><br /><br />   
       <br /><br />
 
     <b>Description:&nbsp;&nbsp;</b><br />
-      <%= @investigation.description %><br /><br />
+      <%= best_in_place @investigation, :description, as: :input %><br /><br />
 
     <b>Date opened:&nbsp;&nbsp;</b>
       <%= @investigation.date_opened.strftime("%B %d, %Y") %><br /><br />
