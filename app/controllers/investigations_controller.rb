@@ -41,10 +41,10 @@ class InvestigationsController < ApplicationController
     respond_to do |format|
       if @investigation.update_attributes(investigation_params)
         format.html { redirect_to @investigation, notice: "Successfully updated information for #{@investigation.title}." }
-        # format.json { respond_with_bip(@investigation) }
+        format.json { respond_with_bip(@investigation) }
       else
         format.html { render :action => "edit" }
-        # format.json { respond_with_bip(@investigation) }
+        format.json { respond_with_bip(@investigation) }
       end
     end
   end

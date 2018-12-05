@@ -18,8 +18,8 @@ class DashboardController < ApplicationController
     	@recent_assignments = Assignment.current.where(['start_date > ?', 30.days.ago]).chronological.to_a.reverse
     	@recent_suspects = Suspect.current.where(['added_on > ?', 30.days.ago]).chronological.to_a.reverse
     	@popular_crimes = CrimeInvestigation.select("crime_id, count(*) as total_count").order("total_count").group("crime_id").to_a.reverse[0,5]
-    	@busy_officers = Assignment.select("officer_id, count(*) as total_count").order("total_count").group("officer_id").to_a.reverse[0,5]
-    	@big_investigations = Assignment.select("investigation_id, count(*) as total_count").order("total_count").group("investigation_id").to_a.reverse[0,5]
+    	@busy_officers = Assignment.current.select("officer_id, count(*) as total_count").order("total_count").group("officer_id").to_a.reverse[0,5]
+    	@big_investigations = Assignment.current.select("investigation_id, count(*) as total_count").order("total_count").group("investigation_id").to_a.reverse[0,5]
     end
   end
 

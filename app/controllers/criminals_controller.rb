@@ -37,8 +37,10 @@ class CriminalsController < ApplicationController
     respond_to do |format|
       if @criminal.update_attributes(criminal_params)
         format.html { redirect_to @criminal, notice: "Successfully updated information for #{@criminal.proper_name}." }
+        format.json { respond_with_bip(@criminal) }
       else
         format.html { render :action => "edit" }
+        format.json { respond_with_bip(@criminal) }
       end
     end
   end

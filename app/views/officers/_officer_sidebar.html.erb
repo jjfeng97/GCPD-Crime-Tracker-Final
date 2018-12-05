@@ -2,12 +2,12 @@
 <div id="tabbed">
   <tabs>
 
-    <tab name="current suspects" v-bind:selected="true">
+    <tab name="current assignments" v-bind:selected="true">
       <%= render :partial => "current_assignments" %>
     </tab>
 
     <% unless @past_assignments.empty? %>
-	    <tab name="previous suspects">
+	    <tab name="past assignments">
 	      <%= render :partial => "past_assignments" %>
 	    </tab>
     <% end %>
