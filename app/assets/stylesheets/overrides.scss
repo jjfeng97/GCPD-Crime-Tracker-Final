@@ -154,8 +154,20 @@ th.align_center {
   color: #ffd600;
 }
 
-a.btn-floating.btn-large.waves-effect.waves-light {
+a.btn-floating.btn-large.waves-effect.waves-light, a.btn-floating {
+  background-color: #283593;
+}
+
+a.btn-floating.btn-large.waves-effect.waves-light:hover, a.btn-floating:hover {
+  background-color: #5c6bc0;
+}
+
+a.btn-floating.btn-large.waves-effect.waves-light.alert, a.btn-floating.btn-large.alert{
   background-color: #ffd600;
+}
+
+a.btn-floating.btn-large.waves-effect.waves-light.alert:hover, a.btn-floating.btn-large.alert:hover {
+  background-color: #ffff00;
 }
 
 

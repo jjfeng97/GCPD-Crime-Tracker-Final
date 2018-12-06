@@ -28,9 +28,11 @@
             <i class="material-icons">delete</i>
         <% end %>
       <% else %>
-        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light red') do %>
+        <span class="tooltipped" data-position="bottom" data-tooltip="Delete"}>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light alert') do %>
             <i class="material-icons">delete</i>
         <% end %>
+        </span>
       <% end %>
 
     <% elsif model_name == "unit" %> 
@@ -39,14 +41,14 @@
             <i class="material-icons">delete</i>
         <% end %>
       <% else %>
-        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light red') do %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light alert') do %>
             <i class="material-icons">delete</i>
         <% end %>
       <% end %>
 
     <% else %>
       <% if can?(:destroy, object) && controller.respond_to?(:destroy) %>
-        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light red') do %>
+        <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light alert') do %>
             <i class="material-icons">delete</i>
         <% end %>
       <% end %>
@@ -55,8 +57,48 @@
 
   <%# This is just to handle the extra case of closing investigations  %>
   <% if can?(:close, object) && controller.respond_to?(:close) && object.date_closed.nil? %>
-    <%= link_to(eval("close_#{model_name}_path(object)"), method: 'patch', data: {confirm: "Are you sure you want to close this #{opt} as of today?"}, class: 'btn-floating btn-large waves-effect waves-light') do %>
+    <%= link_to(eval("close_#{model_name}_path(object)"), method: 'patch', data: {confirm: "Are you sure you want to close this #{opt} as of today?"}, class: 'btn-floating btn-large waves-effect waves-light alert') do %>
         <i class="material-icons">clear</i>
     <% end %>
   <% end %>
+</div>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large alert">
+    <i class="large material-icons">menu</i>
+  </a>
+  <ul>
+    <li>
+      <% if can? :index, eval(model_name.capitalize) %>
+      <span class="tooltipped" data-position="left" data-tooltip="Display All"}>
+      <%= link_to(eval("#{model_name.pluralize}_path"), class: 'btn-floating') do %>
+        <i class="material-icons">arrow_back</i>
+      <% end %>
+      &nbsp;&nbsp;
+      </span>
+      <% end %>
+    </li>
+
+    <li>
+      <% if can? :edit, object %>
+        <span class="tooltipped" data-position="left" data-tooltip="Edit"}>
+        <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'btn-floating') do %>
+            <i class="material-icons">edit</i>
+        <% end %>
+        &nbsp;&nbsp;
+        </span>
+      <% end %>
+    </li>
+
+    <li>
+      <% if can? :new, object %>
+        <span class="tooltipped" data-position="left" data-tooltip="Add New"}>
+        <%= link_to(eval("new_#{model_name}_path"), class: 'btn-floating') do %>
+            <i class="material-icons">add</i>
+        <% end %>
+        &nbsp;&nbsp;
+        </span>
+      <% end %>
+    </li>
+  </ul>
 </div>
