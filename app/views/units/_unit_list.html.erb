@@ -9,6 +9,7 @@
       <th>Unit</th>
       <th># Active Officers</th>
       <th># Current Investigations</th>
+      <th>Active?</th>
       <% if can? :edit, Unit %>
         <th class="align_center">Edit</th>
       <% end %>
@@ -24,6 +25,14 @@
         
         <td><%= unit.officers.active.count %></td>
         <td><%= unit.assignments.current.count %></td>
+
+        <td>
+          <% if can? :edit, unit %>
+            <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place unit, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %></span>
+          <% else %>
+            <%= unit.active ? "Yes" : "No" %>
+          <% end %>
+        </td>
 
         <% if can? :edit, unit %>
           <td class="align_center">

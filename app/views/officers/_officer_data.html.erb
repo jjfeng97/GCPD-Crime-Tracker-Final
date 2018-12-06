@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-content">
     <h5>Officer Information for 
-    <%= best_in_place_if (can? :edit, @officer), @officer, :first_name, as: :input %> 
-    <%= best_in_place_if (can? :edit, @officer), @officer, :last_name, as: :input %></h5><br />
+    <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @officer), @officer, :first_name, as: :input %> 
+    <%= best_in_place_if (can? :edit, @officer), @officer, :last_name, as: :input %></span></h5><br />
 
     <b>Current Unit:&nbsp;&nbsp;</b>
       <%= link_to @officer.unit.name, unit_path(@officer.unit) %>
@@ -18,14 +18,14 @@
       <%= @officer.user.role.capitalize %><br /><br />
       
     <b>SSN:&nbsp;&nbsp;</b>
-      <%= best_in_place_if (can? :edit, @officer), @officer, :ssn, as: :input %><br /><br />
+      <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @officer), @officer, :ssn, as: :input %></span><br /><br />
 
     <b>Username:&nbsp;&nbsp;</b>
       <%= @officer.user.active ? @officer.user.username : "n/a" %><br /><br />
 
     <b>Active with GCPD?&nbsp;&nbsp;</b>
       <% if can? :edit, @officer %>
-        <%= best_in_place @officer, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %><br><br>
+        <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place @officer, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %></span><br><br>
       <% else %>
         <%= @officer.active ? "Yes" : "No" %><br /><br />
       <% end %>

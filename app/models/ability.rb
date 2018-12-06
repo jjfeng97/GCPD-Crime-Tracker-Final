@@ -44,6 +44,7 @@ class Ability
       can :read, Investigation
       can :new, Investigation
       can :create, Investigation
+      can :search, Investigation
 
       # can only update investigation if they are currently assigned to it
       can :update, Investigation do |i|

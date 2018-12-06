@@ -8,6 +8,7 @@
     <thead>
       <th>Name</th>
       <th>Rank</th>
+      <th>Active?</th>
 
       <% if can? :edit, Officer %>
         <th class="align_center">Edit</th>
@@ -24,8 +25,13 @@
 
         <td><%= officer.rank %></td>
 
-
-
+        <td>
+          <% if can? :edit, officer %>
+            <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place officer, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %></span>
+          <% else %>
+            <%= officer.active ? "Yes" : "No" %>
+          <% end %>
+        </td>
 
         <% if can? :edit, officer %>
           <td class="align_center">

@@ -1,28 +1,28 @@
 <div class="card">
   <div class="card-content">
     <h5>Information for 
-    <%= best_in_place_if (can? :edit, @criminal), @criminal, :first_name, as: :input %> 
-    <%= best_in_place_if (can? :edit, @criminal), @criminal, :last_name, as: :input %><br /><br /></h5>
+    <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @criminal), @criminal, :first_name, as: :input %> 
+    <%= best_in_place_if (can? :edit, @criminal), @criminal, :last_name, as: :input %></span><br /><br /></h5>
 
     <b>Alias:&nbsp;&nbsp;</b>
-      <%= best_in_place_if (can? :edit, @criminal), @criminal, :aka, as: :input %><br /><br />
+      <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @criminal), @criminal, :aka, as: :input %></span><br /><br />
 
     <b>Convicted Felon?&nbsp;&nbsp;</b>
       <% if can? :edit, @criminal %>
-        <%= best_in_place @criminal, :convicted_felon, as: :checkbox, collection: {false: "No", true: "Yes"} %><br><br>
+        <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place @criminal, :convicted_felon, as: :checkbox, collection: {false: "No", true: "Yes"} %></span><br><br>
       <% else %>
         <%= @criminal.convicted_felon ? "Yes" : "No" %><br /><br />
       <% end %>
 
     <b>Has Enhanced Powers?&nbsp;&nbsp;</b>
       <% if can? :edit, @criminal %>
-        <%= best_in_place @criminal, :enhanced_powers, as: :checkbox, collection: {false: "No", true: "Yes"} %><i class="material-icons edit">edit</i><br><br>
+        <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place @criminal, :enhanced_powers, as: :checkbox, collection: {false: "No", true: "Yes"} %></span><br><br>
       <% else %>
         <%= @criminal.enhanced_powers ? "Yes" : "No" %><br /><br />
       <% end %>
 
     <b>Notes:&nbsp;&nbsp;</b>
-      <%= best_in_place_if (can? :edit, @criminal), @criminal, :notes, :as => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %><br /><br />
+      <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @criminal), @criminal, :notes, :as => :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %></span><br /><br />
 
   </div>
 </div>

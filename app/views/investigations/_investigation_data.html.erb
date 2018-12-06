@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-content">
-    <h5>Information for <%= best_in_place_if (can? :edit, @investigation), @investigation, :title, as: :input %><br /><br /></h5><br />
+    <h5>Information for <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @investigation), @investigation, :title, as: :input %></span><br /><br /></h5>
 
     <b>Crimes committed:&nbsp;&nbsp;</b><br />
       <% @case_crimes.sort_by{ |c| c.crime.name }.each do |ci| %> <!-- goes through crime investigations -->
@@ -17,10 +17,10 @@
       <br />
 
     <b>Location:&nbsp;&nbsp;</b>
-      <%= best_in_place_if (can? :edit, @investigation), @investigation, :crime_location, as: :input %><br /><br />   
+      <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @investigation), @investigation, :crime_location, as: :input %></span><br /><br />   
 
     <b>Description:&nbsp;&nbsp;</b><br />
-      <%= best_in_place_if (can? :edit, @investigation), @investigation, :description, as: :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %><br /><br />
+      <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @investigation), @investigation, :description, as: :textarea, :ok_button => 'Save', :cancel_button => 'Cancel' %></span><br /><br />
 
     <b>Date opened:&nbsp;&nbsp;</b>
       <%= @investigation.date_opened.strftime("%B %d, %Y") %><br /><br />
@@ -32,14 +32,14 @@
 
     <b>Was Batman involved?&nbsp;&nbsp;</b>
       <% if can? :edit, @investigation %>
-        <%= best_in_place @investigation, :batman_involved, as: :checkbox, collection: {false: "No", true: "Yes"} %><br /><br />
+        <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place @investigation, :batman_involved, as: :checkbox, collection: {false: "No", true: "Yes"} %></span><br /><br />
       <% else %>
         <%= @investigation.batman_involved ? "Yes" : "No" %><br /><br />
       <% end %>
 
     <b>Case solved?&nbsp;&nbsp;</b>
       <% if can? :edit, @investigation %>
-        <%= best_in_place @investigation, :solved, as: :checkbox, collection: {false: "No", true: "Yes"} %><br /><br />
+        <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place @investigation, :solved, as: :checkbox, collection: {false: "No", true: "Yes"} %></span><br /><br />
       <% else %>
         <%= @investigation.solved ? "Yes" : "No" %><br /><br />
       <% end %>

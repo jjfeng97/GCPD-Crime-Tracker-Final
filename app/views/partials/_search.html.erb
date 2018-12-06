@@ -1,6 +1,6 @@
-<%= form_with url: eval("#{model_name}_search_path"), method: :get, class: "form-inline", id: "search" do %>
-  <%= text_field_tag 'query', '', placeholder: "Search ..." %>
+<%= form_with url: eval("#{model_name}_search_path"), method: :get, class: "form-inline", id: "search" do |f| %>
+  <%= text_field_tag 'query', '', placeholder: "Search #{model_name}s..." %>
   <!-- submitting via js (press enter) so not using... -->
-  <%= submit_tag('Find') %>
+  <div class = "action"><%= f.submit "Search" %></div>
   
 <% end %>

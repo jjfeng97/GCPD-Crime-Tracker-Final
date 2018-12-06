@@ -8,6 +8,7 @@
     <thead>
       <th>Crime</th>
       <th>Level</th>
+      <th>Active?</th>
 
       <% if can? :edit, Crime %>
         <th class="align_center">Edit</th>
@@ -15,13 +16,21 @@
     </thead>
     <% for crime in crimes %>
       <tr>
-        <td><%= best_in_place_if (can? :edit, crime), crime, :name, as: :input %><%# crime.name %></td>
+        <td><span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, crime), crime, :name, as: :input %><%# crime.name %></span></td>
 
         <td>
           <% if can? :edit, crime %>
-            <%= best_in_place crime, :felony, as: :checkbox, collection: {false: "Misdemeanor", true: "Felony"} %>
+            <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place crime, :felony, as: :checkbox, collection: {false: "Misdemeanor", true: "Felony"} %></span>
           <% else %>
             <%= crime.felony ? "Felony" : "Misdemeanor" %>
+          <% end %>
+        </td>
+
+        <td>
+          <% if can? :edit, crime %>
+            <span class="tooltipped" data-position="right" data-tooltip="Click to toggle"><%= best_in_place crime, :active, as: :checkbox, collection: {false: "No", true: "Yes"} %></span>
+          <% else %>
+            <%= crime.active ? "Yes" : "No" %>
           <% end %>
         </td>
 

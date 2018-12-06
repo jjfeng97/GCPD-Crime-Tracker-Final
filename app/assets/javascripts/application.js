@@ -46,10 +46,15 @@ $(document).ready(function() {
         submitForm();
     }
   }
+  $(".action").click(function() {
+    submitForm();
+  })
 });
 
 
-// Floating action button
-$(document).ready(function(){
-  $('.fixed-action-btn').floatingActionButton();
-});
+// // Floating action button
+// $(document).ready(function(){
+//   $('.fixed-action-btn').floatingActionButton();
+// });
+
+
