@@ -3,10 +3,17 @@
     <%# link_to(image_tag('logos/logo_v2_80x80.png'), home_path) %>
   </div>
   <div class="col s10">
-  	<%= link_to home_path do%>
-      <%= image_tag 'gcpd.png', class: 'img_left' %>
+    <% if current_user %>
+    	<%= link_to dashboard_path do%>
+        <%= image_tag 'gcpd.png', class: 'img_left' %>
+      <% end %>
+      <h2><%= link_to "GCPD Tracking System", dashboard_path, class: "home_link" %></h2>
+    <% else %>
+      <%= link_to home_path do%>
+        <%= image_tag 'gcpd.png', class: 'img_left' %>
+      <% end %>
+      <h2><%= link_to "GCPD Tracking System", home_path, class: "home_link" %></h2>
     <% end %>
-    <h2><%= link_to "GCPD Tracking System", home_path, class: "home_link" %></h2>
   </div>
   <div class="col s1">
     &nbsp;

@@ -58,3 +58,8 @@ $(document).ready(function() {
 // });
 
 
+// Carousel function
+  $('.carousel.carousel-slider').carousel({
+    fullWidth: true
+  });
+       

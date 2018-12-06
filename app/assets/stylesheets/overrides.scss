@@ -25,6 +25,15 @@ main {
   color: #ffd600;
 }
 
+a {
+  color: #283593;
+}
+
+h1, h2, h3, h4, h5, .card-title {
+  font-family: 'Carrois Gothic SC', sans-serif;
+}
+
+
 /********** TOPBAR & NAV ********/
 #topbar {
   background-color: #000000;
@@ -37,7 +46,7 @@ main {
 #nav {
   background-color: #424242;
   height: 65px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 #nav ul a {
