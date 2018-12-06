@@ -154,10 +154,14 @@ th.align_center {
   color: #ffd600;
 }
 
+a.btn-floating.btn-large.waves-effect.waves-light {
+  background-color: #ffd600;
+}
+
 
 /********** FORMS ********/
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #2E637A;
+  background-color: #283593;
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
@@ -165,7 +169,7 @@ th.align_center {
 }
 
 .picker__date-display {
-  background-color: #2E637A;
+  background-color: #283593;
   color: #ffd600;
 }
 
@@ -240,11 +244,11 @@ li.no_bullet {
 
 /********** TABS ********/
 .tabs .tab a.active {
-  color: #2E637A;
+  color: #283593;
 }
 
 .tabs .tab a:hover {
-  color: rgb(58, 129, 160);
+  color: #283593;
 }
 
 .tabs .tab a {
@@ -255,7 +259,7 @@ li.no_bullet {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #2E637A;
+  background-color: #283593;
   will-change: left, right;
 }
 
@@ -328,4 +332,6 @@ li.no_bullet {
 
 
 /********** BEST IN PLACE ********/
-
+.best_in_place:hover {
+  color: #283593;
+}

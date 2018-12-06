@@ -9,10 +9,6 @@
       <th>Title</th>
       <th>Date <%= state %></th>
       <th>Solved?</th>
-
-      <% if can? :edit, Investigation %>
-        <th class="align_center">Edit</th>
-      <% end %>
     </thead>
     <% for investigation in investigations %>
       <tr>
