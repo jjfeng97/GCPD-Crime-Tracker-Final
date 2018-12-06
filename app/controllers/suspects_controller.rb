@@ -19,7 +19,10 @@ class SuspectsController < ApplicationController
     @suspect.added_on = Date.current
     if @suspect.save
       flash[:notice] = "Successfully added #{@suspect.criminal.proper_name} as a suspect of #{@suspect.investigation.title}."
-      if @suspect.from == "criminal"
+      from = params[:from]
+      if @suspect.from == "dashboard"
+        redirect_to dashboard_path
+      elsif @suspect.from == "criminal"
         redirect_to criminal_path(@suspect.criminal)
       else
         redirect_to investigation_path(@suspect.investigation)

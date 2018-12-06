@@ -1,4 +1,6 @@
-<% if @criminal_investigations.nil? %>
+<% if params[:from] == "dashboard" %>
+	<%= render :partial => "create_suspect_from_dashboard" %>
+<% elsif @criminal_investigations.nil? %>
   <%= render :partial => "create_suspect_from_investigation" %>
 <% else %>
   <%= render :partial => "create_suspect_from_criminal" %>
