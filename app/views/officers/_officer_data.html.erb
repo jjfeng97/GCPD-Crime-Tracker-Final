@@ -6,7 +6,7 @@
 
     <b>Current Unit:&nbsp;&nbsp;</b>
       <%= link_to @officer.unit.name, unit_path(@officer.unit) %>
-      <% if @officer.user.role?(:chief) %>
+      <% if !@officer.user.nil? and @officer.user.role?(:chief) %>
         &nbsp;&nbsp;<i>*Unit Chief</i>
       <% end%>     
       <br /><br />
@@ -14,14 +14,18 @@
     <b>Current Rank:&nbsp;&nbsp;</b>
       <%= @officer.rank %><br /><br />
 
-    <b>Current Role:&nbsp;&nbsp;</b>
-      <%= @officer.user.role.capitalize %><br /><br />
+    <% unless @officer.user.nil? %>
+      <b>Current Role:&nbsp;&nbsp;</b>
+        <%= @officer.user.role.capitalize %><br /><br />
+    <% end %>
       
     <b>SSN:&nbsp;&nbsp;</b>
       <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @officer), @officer, :ssn, as: :input %></span><br /><br />
 
-    <b>Username:&nbsp;&nbsp;</b>
-      <%= @officer.user.active ? @officer.user.username : "n/a" %><br /><br />
+    <% unless @officer.user.nil? %> 
+      <b>Username:&nbsp;&nbsp;</b>
+        <%= @officer.user.active ? @officer.user.username : "n/a" %><br /><br />
+    <% end %>    
 
     <b>Active with GCPD?&nbsp;&nbsp;</b>
       <% if can? :edit, @officer %>

@@ -59,3 +59,10 @@
     <% end %>
   <% end %>
 <% end%>
+<% if can? :read, InvestigationNote %>
+  <div class="card grey lighten-3">
+    <div class="card-action">
+      <%= link_to "See all notes", investigation_notes_path(investigation_id: @investigation.id) %>
+    </div>
+  </div>
+<% end %>

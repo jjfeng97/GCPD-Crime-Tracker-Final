@@ -3,6 +3,11 @@ class InvestigationNotesController < ApplicationController
   before_action :check_login
   authorize_resource
 
+  def index
+    @investigation = Investigation.find(params[:investigation_id])
+    @notes = @investigation.investigation_notes.chronological.paginate(page: params[:page]).per_page(10)
+  end
+
   def new
     @investigation_note = InvestigationNote.new
     unless params[:investigation_id].nil?
@@ -34,13 +39,16 @@ class InvestigationNotesController < ApplicationController
   end
 
   def update
-    if @investigation_note.update_attributes(investigation_note_params)
-      flash[:notice] = "Successfully updated investigation note."
-      redirect_to investigation_path(@investigation_note.investigation)
-    else
-      @investigation = Investigation.find(params[:investigation_note][:investigation_id])
-      @officer = Officer.find(params[:investigation_note][:officer_id])
-      render action: 'edit', locals: { investigation: @investigation, officer: @officer }
+    respond_to do |format|
+      if @investigation_note.update_attributes(investigation_note_params)
+        format.html { redirect_to investigation_path(@investigation_note.investigation), notice: "Successfully updated investigation note." }
+        format.json { respond_with_bip(@investigation_note, investigation: @investigation) }
+      else
+        @investigation = Investigation.find(params[:investigation_note][:investigation_id])
+        @officer = Officer.find(params[:investigation_note][:officer_id])
+        format.html { render :action => "edit", locals: { investigation: @investigation, officer: @officer } }
+        format.json { respond_with_bip(@investigation_note) }
+      end
     end
   end
 

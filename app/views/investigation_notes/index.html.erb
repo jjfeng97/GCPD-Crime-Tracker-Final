@@ -1,0 +1,47 @@
+<h4><%= "Investigation Notes for #{@investigation.title}" %></h4>
+
+<% if @notes.empty? %>
+  <p><%= "There are no notes for #{@investigation.title} at this time." %></p>
+<% else %>
+
+  <table class="striped highlight">
+    <thead>
+      <th>Note</th>
+      <th>Written By</th>
+      <th>Date</th>
+
+      <% if can? :edit, InvestigationNote %>
+        <th class="align_center">Edit</th>
+      <% end %>
+    </thead>
+    <% for note in @notes %>
+      <tr>
+        <td><span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, note), note, :content, as: :textarea, :ok_button => 'Save', :cancel_button => 'Cancel'%></span></td>
+
+        <td>
+          <%= note.officer.name %>
+        </td>
+
+        <td>
+          <%= note.date %>
+        </td>
+
+        <% if can? :edit, note %>
+          <td class="align_center">
+            <%= link_to edit_investigation_note_path(note, investigation_id: @investigation.id) do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <p class="supertiny"></p>
+  <br />
+  <%= will_paginate @notes, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% end %>
+
+<%= link_to(investigation_path(@investigation), class: 'waves-effect waves-light btn') do %>
+  &nbsp;Back to <%= @investigation.title %>
+<% end %>
+&nbsp;&nbsp;
