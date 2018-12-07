@@ -24,7 +24,7 @@
 
     <% unless @officer.user.nil? %> 
       <b>Username:&nbsp;&nbsp;</b>
-        <%= @officer.user.active ? @officer.user.username : "n/a" %><br /><br />
+        <%= @officer.user.active ? @officer.user.username : "n/a - account is inactive" %><br /><br />
     <% end %>    
 
     <b>Active with GCPD?&nbsp;&nbsp;</b>

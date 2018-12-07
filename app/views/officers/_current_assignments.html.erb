@@ -1,7 +1,18 @@
 <% unless @current_assignments.empty? %>
   <div class="card">
     <div class="card-content">
-      <span class="card-title">Current Assignments</span>
+      <p class="card-title">
+        <% if @officer.active %>
+          <% if can? :new, Assignment %>
+            <%= link_to(new_assignment_path(officer_id: @officer.id), class: 'btn-floating waves-effect waves-light') do %>
+              <i class="material-icons">add</i>
+            <% end %>
+            &nbsp;
+          <% end %>
+        <% end %>
+      Current Assignments
+      </p>
+
       <table class="lined">
         <thead>
           <th>Case</th>
@@ -13,7 +24,7 @@
               <td>
                 <% if can? :terminate, Assignment %>
                   <%= link_to(terminate_assignment_path(assignment, from: "officer"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to terminate this assignment?' }) do %>
-                    x&nbsp;&nbsp;
+                    <span class="tooltipped" data-position="left" data-tooltip="Terminate assignment">x&nbsp;&nbsp;</span>
                   <% end %>
                 <% end %>
                 &nbsp;<%= link_to assignment.investigation.title, investigation_path(assignment.investigation) %>
@@ -24,14 +35,6 @@
             </tr>
           <% end %>
       </table>
-
-      <% if @officer.active %>
-        <% if can? :new, Assignment %>
-        <div class="card-action">
-          <%= link_to "Add a new assignment", new_assignment_path(officer_id: @officer.id) %>
-        </div>
-        <% end %>
-      <% end %>
       
     </div>
   </div>

@@ -49,7 +49,7 @@ class OfficersController < ApplicationController
   def update
     respond_to do |format|
       update_user_params
-      if @officer.update_attributes(officer_params)
+      if @officer.update_attributes(officer_params) and @user.save
         format.html { redirect_to @officer, notice: "Successfully updated all information for #{@officer.proper_name}." }
         format.json { respond_with_bip(@officer) }
       else

@@ -9,6 +9,15 @@
     &nbsp;&nbsp;
     </span>
   <% end %>
+
+  <% if can? :new, object %>
+    <span class="tooltipped" data-position="bottom" data-tooltip="Add New"}>
+    <%= link_to(eval("new_#{model_name}_path"), class: 'btn-floating btn-large waves-effect waves-light') do %>
+        <i class="material-icons">add</i>
+    <% end %>
+    &nbsp;&nbsp;
+    </span>
+  <% end %>
   
   <% if can? :edit, object %>
     <span class="tooltipped" data-position="bottom" data-tooltip="Edit"}>
@@ -18,7 +27,7 @@
     &nbsp;&nbsp;
     </span>
   <% end %>
-  
+
 
   <% if can?(:destroy, object) && controller.respond_to?(:destroy) %>
 
@@ -68,6 +77,7 @@
   <% end %>
   </span>
 </div>
+
 
 <div class="fixed-action-btn">
   <a class="btn-floating btn-large alert">
