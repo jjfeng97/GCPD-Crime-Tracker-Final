@@ -41,26 +41,32 @@
             <i class="material-icons">delete</i>
         <% end %>
       <% else %>
+        <span class="tooltipped" data-position="bottom" data-tooltip="Delete"}>
         <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light alert') do %>
             <i class="material-icons">delete</i>
         <% end %>
+        </span>
       <% end %>
 
     <% else %>
+      <span class="tooltipped" data-position="bottom" data-tooltip="Delete"}>
       <% if can?(:destroy, object) && controller.respond_to?(:destroy) %>
         <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'btn-floating btn-large waves-effect waves-light alert') do %>
             <i class="material-icons">delete</i>
         <% end %>
       <% end %>
+      </span>
     <% end %>
   <% end %>
 
   <%# This is just to handle the extra case of closing investigations  %>
+  <span class="tooltipped" data-position="bottom" data-tooltip="Close Investigation"}>
   <% if can?(:close, object) && controller.respond_to?(:close) && object.date_closed.nil? %>
     <%= link_to(eval("close_#{model_name}_path(object)"), method: 'patch', data: {confirm: "Are you sure you want to close this #{opt} as of today?"}, class: 'btn-floating btn-large waves-effect waves-light alert') do %>
         <i class="material-icons">clear</i>
     <% end %>
   <% end %>
+  </span>
 </div>
 
 <div class="fixed-action-btn">

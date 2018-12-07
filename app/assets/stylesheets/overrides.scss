@@ -26,7 +26,7 @@ main {
 }
 
 a {
-  color: #283593;
+  color: #0d47a1;
 }
 
 h1, h2, h3, h4, h5, .card-title {
@@ -154,26 +154,30 @@ th.align_center {
   color: #ffd600;
 }
 
-a.btn-floating.btn-large.waves-effect.waves-light, a.btn-floating {
-  background-color: #283593;
+a.btn-floating.btn-large.waves-effect.waves-light, 
+a.btn-floating,
+a.btn-floating.btn-large.alert {
+  background-color: #0d47a1;
 }
 
-a.btn-floating.btn-large.waves-effect.waves-light:hover, a.btn-floating:hover {
-  background-color: #5c6bc0;
+a.btn-floating.btn-large.waves-effect.waves-light:hover, 
+a.btn-floating:hover, 
+a.btn-floating.btn-large.alert:hover {
+  background-color: #1976d2;
 }
 
-a.btn-floating.btn-large.waves-effect.waves-light.alert, a.btn-floating.btn-large.alert{
-  background-color: #ffd600;
+a.btn-floating.btn-large.waves-effect.waves-light.alert {
+  background-color: #b71c1c;
 }
 
-a.btn-floating.btn-large.waves-effect.waves-light.alert:hover, a.btn-floating.btn-large.alert:hover {
-  background-color: #ffff00;
+a.btn-floating.btn-large.waves-effect.waves-light.alert:hover {
+  background-color: #e53935;
 }
 
 
 /********** FORMS ********/
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #283593;
+  background-color: #0d47a1;
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
@@ -181,7 +185,7 @@ a.btn-floating.btn-large.waves-effect.waves-light.alert:hover, a.btn-floating.bt
 }
 
 .picker__date-display {
-  background-color: #283593;
+  background-color: #0d47a1;
   color: #ffd600;
 }
 
@@ -256,11 +260,11 @@ li.no_bullet {
 
 /********** TABS ********/
 .tabs .tab a.active {
-  color: #283593;
+  color: #0d47a1;
 }
 
 .tabs .tab a:hover {
-  color: #283593;
+  color: #0d47a1;
 }
 
 .tabs .tab a {
@@ -271,7 +275,7 @@ li.no_bullet {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #283593;
+  background-color: #0d47a1;
   will-change: left, right;
 }
 
@@ -345,5 +349,5 @@ li.no_bullet {
 
 /********** BEST IN PLACE ********/
 .best_in_place:hover {
-  color: #283593;
+  color: #0d47a1;
 }
