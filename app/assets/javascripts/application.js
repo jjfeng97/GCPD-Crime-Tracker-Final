@@ -52,12 +52,6 @@ $(document).ready(function() {
 });
 
 
-// // Floating action button
-// $(document).ready(function(){
-//   $('.fixed-action-btn').floatingActionButton();
-// });
-
-
 // Carousel function
   $('.carousel.carousel-slider').carousel({
     fullWidth: true

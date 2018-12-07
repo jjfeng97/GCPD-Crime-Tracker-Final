@@ -2,34 +2,53 @@
   <div class="card-content">
     <span class="card-title">My Current Assignments</span>
     <% unless @current_assignments.empty? %>
-      <% for assignment in @current_assignments %>
+      <ul class="collapsible">
+        <% for assignment in @current_assignments %>
 
-        <ul class="collapsible">
           <li>
-            <div class="collapsible-header"><i class="material-icons">add</i>
+            <div class="collapsible-header"><i class="material-icons">arrow_drop_down</i>
                 <%= assignment.investigation.title %> (started on <%= assignment.start_date.strftime("%m/%d/%y") %>)
+                &nbsp;&nbsp;
+                <%= link_to investigation_path(assignment.investigation) do %>
+                  <i class="material-icons">arrow_forward</i>
+                <% end %>
             </div>
 
             <div class="collapsible-body"><span>
-              <div class="card-action">
-                <%= link_to "Go to Investigation", investigation_path(assignment.investigation) %>
+
+              <div class="row officer_options">
+
+                <% if can? :new, InvestigationNote %>
+                  <span class="tooltipped" data-position="bottom" data-tooltip="Add a new note"}>
+                    <%= link_to(new_investigation_note_path(investigation_id: assignment.investigation.id, officer_id: current_user.officer.id, from: "dashboard"), class: 'btn-floating waves-effect waves-light') do %>
+                      <i class="material-icons">note_add</i>
+                    <% end %>
+                    &nbsp;&nbsp;
+                  </span>
+                <% end %>
+
+                <% if @officer.active %>
+                  <% if can? :new, Suspect %>
+                    <span class="tooltipped" data-position="bottom" data-tooltip="Add a new suspect"}>
+                      <%= link_to(new_suspect_path(investigation_id: assignment.investigation.id, from: "dashboard"), class: 'btn-floating waves-effect waves-light') do %>
+                        <i class="material-icons">person_add</i>
+                      <% end %>
+                      &nbsp;&nbsp;
+                    </span>
+                  <% end %>
+                <% end %>
+
+                <span class="tooltipped" data-position="bottom" data-tooltip="Go to investigation"}>
+                  <%= link_to(investigation_path(assignment.investigation), class: 'btn-floating waves-effect waves-light') do %>
+                    <i class="material-icons">arrow_forward</i>
+                  <% end %>
+                  &nbsp;&nbsp;
+                </span>
+
               </div>
 
-              <% if can? :new, InvestigationNote %>
-                <div class="card-action">
-                  <%= link_to "Add a new note", new_investigation_note_path(investigation_id: assignment.investigation.id, officer_id: current_user.officer.id, from: "dashboard") %>
-                </div>
-              <% end %>
-
-              <% if @officer.active %>
-                <% if can? :new, Suspect %>
-                <div class="card-action">
-                  <%= link_to "Add a new suspect", new_suspect_path(investigation_id: assignment.investigation.id, from: "dashboard") %>
-                </div>
-                <% end %>
-              <% end %>
-
               <% unless assignment.investigation.investigation_notes.empty? %>
+                <h5><%= "Notes for #{assignment.investigation.title}:" %></h5>
                 <table class="striped highlight">
                   <thead>
                     <th>Note</th>
@@ -52,13 +71,18 @@
                     </tr>
                   <% end %>
                 </table>
+
+              <% else %>
+                <h5>There are no notes for this case currently.</h5>
               <% end %>
 
             </span></div>
           </li>
-        </ul>
 
-      <% end %>
+        <% end %>
+      </ul>
+    <% else %>
+      <h5>You have no current assignments.</h5>
 
     <% end %>
   </div>
