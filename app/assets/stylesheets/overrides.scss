@@ -120,6 +120,19 @@ th.align_center {
   text-align: center;
 }
 
+th.nobottompadding {
+  padding-bottom: 0;
+  padding-top: 30px;
+  text-align: center;
+}
+
+h2.notopmargin {
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
 /********** BUTTONS ********/
 .btn {
   background-color: #ffd600;
