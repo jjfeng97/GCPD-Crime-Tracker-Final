@@ -4,8 +4,8 @@ class UnitsController < ApplicationController
   authorize_resource
   
   def index
-    @active_units = Unit.active.alphabetical.paginate(page: params[:page]).per_page(10)
-    @inactive_units = Unit.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+    @active_units = Unit.active.alphabetical.paginate(page: params[:active_page]).per_page(10)
+    @inactive_units = Unit.inactive.alphabetical.paginate(page: params[:inactive_page]).per_page(10)
   end
 
   def show

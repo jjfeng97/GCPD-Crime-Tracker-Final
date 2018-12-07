@@ -49,7 +49,7 @@ class OfficersController < ApplicationController
   def update
     respond_to do |format|
       update_user_params
-      if @officer.update_attributes(officer_params) and @user.save
+      if @officer.update_attributes(officer_params)
         format.html { redirect_to @officer, notice: "Successfully updated all information for #{@officer.proper_name}." }
         format.json { respond_with_bip(@officer) }
       else
@@ -101,8 +101,8 @@ class OfficersController < ApplicationController
 
   def update_user_params
     @user = @officer.user
-    @user.role = officer_params[:role]
+    @user.role = officer_params[:role] if !officer_params[:role].blank?
     @user.username = officer_params[:username] if !officer_params[:username].blank?
-    @user.password = officer_params[:password] if @user.valid?
+    @user.password = officer_params[:password] if !officer_params[:password].blank?
   end
 end

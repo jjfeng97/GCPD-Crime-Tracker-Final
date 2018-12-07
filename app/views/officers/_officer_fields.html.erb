@@ -10,9 +10,10 @@
 <%= f.input :unit_id, collection: Unit.alphabetical.to_a, include_blank: true %>
 <%= f.input :ssn, label_html: { class: 'active' } %>
 
-<% if controller.action_name == "edit" %>
+<% if controller.action_name == "new" %>
+<%= f.input :active, as: :hidden, input_html: { value: true } %>
 	<%= f.input :active %>
 <% else %>
-	<%= f.input :active, as: :hidden, input_html: { value: true } %>
+	<%= f.input :active %>
 <% end %>
 

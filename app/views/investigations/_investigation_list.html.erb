@@ -33,5 +33,5 @@
   </table>
   <p class="supertiny"></p>
   <br />
-  <%= will_paginate investigations, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <%= will_paginate investigations, param_name: "#{state.downcase}_page", previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>

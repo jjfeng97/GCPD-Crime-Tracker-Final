@@ -47,5 +47,5 @@
   </table>
   <p class="supertiny"></p>
   <br />
-  <%= will_paginate units, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <%= will_paginate units, param_name: "#{state.downcase}_page", previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>

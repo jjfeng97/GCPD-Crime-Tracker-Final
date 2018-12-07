@@ -46,5 +46,5 @@
   </table>
   <p class="supertiny"></p>
   <br />
-  <%= will_paginate crimes, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <%= will_paginate crimes, param_name: "#{state.downcase}_page", previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>
