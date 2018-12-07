@@ -25,22 +25,36 @@
     <div class="card">
       <div class="card-content">
         <span class="card-title">Contact</span>
-        <table cellpadding="3">
-          <tr>
-            <td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
-            <td>Joie Feng</td>
-          </tr>
-          <tr>
-            <td>Email:</td>
-            <td>
-            <%= mail_to("jjfeng@andrew.cmu.edu", "Joie Feng", encode: "javascript") %> 
-            </td>
-          </tr>
-          <tr>
-            <td>Phone:</td>
-            <td>724-759-8477</td>
-          </tr>
-        </table>
+
+        <div class="row">
+          <div class="col s5">
+            <%= image_tag 'joie.jpg', :class => "style_image" %>
+          </div>
+
+          <div class="col s7">
+            <table cellpadding="3">
+              <tr>
+                <td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
+                <td>Joie Feng</td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td>
+                <%= mail_to("jjfeng@andrew.cmu.edu", "jjfeng@andrew.cmu.edu", encode: "javascript") %> 
+                </td>
+              </tr>
+              <tr>
+                <td>Phone:</td>
+                <td>724-759-8477</td>
+              </tr>
+              <tr>
+                <td>Instagram:</td>
+                <td><%= link_to("@joie.pdf", "https://www.instagram.com/joie.pdf/?hl=en") %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
 

@@ -2,34 +2,6 @@
   <div class="card-content">
     <h5>Information for <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @investigation), @investigation, :title, as: :input %></span><br /><br /></h5>
 
-    <div class="row">
-      <div class="col s2">
-      <% if @investigation.date_closed.nil? %>
-        <% if can? :new, CrimeInvestigation %>
-          <span class="tooltipped" data-position="left" data-tooltip="Add crime to investigation">
-          <%= link_to(new_crime_investigation_path(investigation_id: @investigation.id), class: 'btn-floating waves-effect waves-light') do %>
-            <i class="material-icons">add</i>
-          <% end %>
-          </span>
-        <% end %>
-      <% end %>
-      </div>
-
-      <div class="col s10">
-      <b>Crimes committed:&nbsp;&nbsp;</b><br />
-        <% @case_crimes.sort_by{ |c| c.crime.name }.each do |ci| %> <!-- goes through crime investigations -->
-
-          <%= link_to(destroy_crime_investigation_path(ci), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this crime from the investigation?' }) do %>
-            <span class="tooltipped" data-position="left" data-tooltip="Remove crime">x&nbsp;&nbsp;</span>
-          <% end %>
-
-          <%= ci.crime.name %><br />
-        <% end %>
-        <br />
-      </div>
-    </div>
-
-
     <b>Location:&nbsp;&nbsp;</b>
       <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, @investigation), @investigation, :crime_location, as: :input %></span><br /><br />   
 
@@ -57,6 +29,32 @@
       <% else %>
         <%= @investigation.solved ? "Yes" : "No" %><br /><br />
       <% end %>
+
+    <div class="row">
+      <div class="col s2">
+      <% if @investigation.date_closed.nil? %>
+        <% if can? :new, CrimeInvestigation %>
+          <span class="tooltipped" data-position="left" data-tooltip="Add crime">
+          <%= link_to(new_crime_investigation_path(investigation_id: @investigation.id), class: 'btn-floating waves-effect waves-light') do %>
+            <i class="material-icons">add</i>
+          <% end %>
+          </span>
+        <% end %>
+      <% end %>
+      </div>
+
+      <div class="col s10">
+      <b>Crimes committed:&nbsp;&nbsp;</b><br />
+        <% @case_crimes.sort_by{ |c| c.crime.name }.each do |ci| %> <!-- goes through crime investigations -->
+
+          <%= link_to(destroy_crime_investigation_path(ci), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this crime from the investigation?' }) do %>
+            <span class="tooltipped" data-position="left" data-tooltip="Remove crime">x&nbsp;&nbsp;</span>
+          <% end %>
+
+          <%= ci.crime.name %><br />
+        <% end %>
+      </div>
+    </div>
 
   </div>
 </div>

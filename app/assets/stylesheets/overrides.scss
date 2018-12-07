@@ -178,7 +178,9 @@ a.btn-floating.btn-large.waves-effect.waves-light.alert:hover {
   padding: 4px;
 }
 
-
+div.form-actions {
+  text-align: center;
+}
 
 
 /********** FORMS ********/
@@ -250,6 +252,11 @@ input[type=text].search {
 .carousel {
   height: 250px;
 }
+
+.style_image {
+  border-radius: 50%;
+}
+
 
 /********** CARDS ********/
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
