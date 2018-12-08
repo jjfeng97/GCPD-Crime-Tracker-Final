@@ -11,6 +11,8 @@ class DashboardController < ApplicationController
     elsif current_user.role == "chief"
     	@unit = current_user.officer.unit
   		@unit_officers = @unit.officers.alphabetical.active.paginate(page: params[:page]).per_page(5)
+      @current_assignments = @officer.assignments.current.chronological.to_a.reverse
+      @past_assignments = @officer.assignments.past.chronological.to_a.reverse
 
     elsif current_user.role == "commish"
       @units = Unit.active.alphabetical.paginate(page: params[:page]).per_page(5)
