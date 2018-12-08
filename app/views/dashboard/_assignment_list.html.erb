@@ -95,7 +95,7 @@
                     <th>Suspect</th>
                     <th>Date Added</th>
                   </thead>
-                  <% for suspect in assignment.investigation.suspects %>
+                  <% for suspect in assignment.investigation.suspects.current %>
                     <tr>
                       <td>
                         <% if can? :terminate, suspect %>

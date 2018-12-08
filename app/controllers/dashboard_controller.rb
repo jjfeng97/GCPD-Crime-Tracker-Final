@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
   		@unit_officers = @unit.officers.alphabetical.active.paginate(page: params[:page]).per_page(5)
 
     elsif current_user.role == "commish"
-      @units = Unit.active.paginate(page: params[:page]).per_page(5)
+      @units = Unit.active.alphabetical.paginate(page: params[:page]).per_page(5)
     	@recent_investigations = Investigation.is_open.chronological.to_a.reverse.take(5)
     	@recent_suspects = Suspect.current.chronological.to_a.reverse.take(5)
     	@popular_crimes = CrimeInvestigation.select("crime_id, count(*) as total_count").order("total_count").group("crime_id").to_a.reverse[0,5]

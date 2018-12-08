@@ -104,5 +104,6 @@ class OfficersController < ApplicationController
     @user.role = officer_params[:role] if !officer_params[:role].blank?
     @user.username = officer_params[:username] if !officer_params[:username].blank?
     @user.password = officer_params[:password] if !officer_params[:password].blank?
+    @user.password_confirmation = officer_params[:password_confirmation] if !officer_params[:password_confirmation].blank?
   end
 end
