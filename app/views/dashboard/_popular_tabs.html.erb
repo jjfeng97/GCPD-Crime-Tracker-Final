@@ -5,12 +5,12 @@
       <%= render :partial => "big_investigations", locals: {state: 'active'} %>
     </tab>
 
-    <tab name="busy officers">
-      <%= render :partial => "busy_officers", locals: {state: 'inactive'} %>
-    </tab>
-
     <tab name="popular crimes">
       <%= render :partial => "popular_crimes", locals: {state: 'inactive'} %>
+    </tab>
+
+    <tab name="busy officers">
+      <%= render :partial => "busy_officers", locals: {state: 'inactive'} %>
     </tab>
 
   </tabs>

@@ -10,6 +10,10 @@
       <th>Rank</th>
       <th>Active?</th>
 
+      <% if state == "active" %>
+        <th class="align_center"># Current Assignments</th>
+      <% end %>
+
     </thead>
     <% for officer in officers %>
       <tr>
@@ -29,13 +33,17 @@
           <% end %>
         </td>
 
-        <% if can? :edit, officer %>
-          <td class="align_center">
+        <% if state == "active" %>
+          <td class="align_center"><%= officer.assignments.current.count %></td>
+        <% end %>
+
+        <td class="align_center">
+          <% if can? :edit, officer %>
             <%= link_to edit_officer_path(officer) do %>
                 <i class="material-icons">edit</i>
             <% end %>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
         
       </tr>
     <% end %>

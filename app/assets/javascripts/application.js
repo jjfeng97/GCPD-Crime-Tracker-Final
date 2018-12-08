@@ -33,6 +33,8 @@ $(function() {
 // Best in place functionality
 $(document).ready(function() {
   jQuery(".best_in_place").best_in_place();
+  // puts cursor automatically in search bar
+  $("input[name='query']").focus();
 });
 
 
@@ -56,4 +58,4 @@ $(document).ready(function() {
   $('.carousel.carousel-slider').carousel({
     fullWidth: true
   });
-       
+      

@@ -34,13 +34,13 @@
           <% end %>
         </td>
 
-        <% if can? :edit, unit %>
-          <td class="align_center">
+        <td class="align_center">
+          <% if can? :edit, unit %>
             <%= link_to edit_unit_path(unit) do %>
               <i class="material-icons">edit</i>
             <% end %>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
 
       </tr>
     <% end %>

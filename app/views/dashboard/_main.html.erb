@@ -1,6 +1,17 @@
 <div class="card">
   <div class="card-content">
-    <h5>My Profile</h5><br />
+    <p class="card-title">
+
+    <% if can? :edit, @officer %>
+        <span class="tooltipped" data-position="left" data-tooltip="Edit profile"}>
+          <%= link_to(edit_officer_path(@officer), class: 'btn-floating waves-effect waves-light') do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+          &nbsp;
+        </span>
+      <% end %>
+      My Profile
+    </p></br>
 
     <b>Current Unit:&nbsp;&nbsp;</b>
       <%= link_to @officer.unit.name, unit_path(@officer.unit) %>    
@@ -16,6 +27,6 @@
       <%= @officer.user.username %><br /><br />
 
     <b>Active with GCPD?&nbsp;&nbsp;</b>
-      <%= @officer.active ? "Yes" : "No" %><br><br><br>
+      <%= @officer.active ? "Yes" : "No" %><br><br>
   </div>
 </div>

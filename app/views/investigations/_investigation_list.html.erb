@@ -8,7 +8,12 @@
     <thead>
       <th>Title</th>
       <th>Date <%= state %></th>
-      <th>Solved?</th>
+      <th>Status</th>
+        
+      <% if state == "open" %>
+        <th class="align_center"># Current Assignments</th>
+      <% end %>
+
     </thead>
     <% for investigation in investigations %>
       <tr>
@@ -19,15 +24,20 @@
         <% end %>
 
         <td><%= display_date(investigation, state) %></td>
-        <td><%= investigation.solved ? "Yes" : "No" %></td>
+        <td><%= investigation.solved ? "Solved" : "Unsolved" %></td>
+        
+        <% if state == "open" %>
+          <td class="align_center"><%= investigation.assignments.current.count %></td>
+        <% end %>
 
-        <% if can? :edit, investigation %>
-          <td class="align_center">
+        <td class="align_center">
+          <% if can? :edit, investigation %>
             <%= link_to edit_investigation_path(investigation) do %>
                 <i class="material-icons">edit</i>
             <% end %>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
+
       </tr>
     <% end %>
   </table>

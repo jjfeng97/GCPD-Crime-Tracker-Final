@@ -14,7 +14,7 @@
 	<%= render partial: "partials/dashboard", locals: {primary: "unit_data", 
 	                                                   secondary: nil,
 	                                                   tertiary: nil,
-	                                                   sidebar: "main"} %> 
+	                                                   sidebar: "chief_actions"} %> 
 
 <% elsif current_user.role == "commish" %>
 	<%= render partial: "partials/dashboard", locals: {primary: "units_overview", 

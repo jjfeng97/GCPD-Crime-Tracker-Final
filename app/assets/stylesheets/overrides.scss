@@ -29,8 +29,16 @@ a {
   color: #0d47a1;
 }
 
+a:hover {
+  color: #1976d2;
+}
+
 h1, h2, h3, h4, h5, .card-title {
   font-family: 'Carrois Gothic SC', sans-serif;
+}
+
+h2.page_title {
+  margin-bottom: 10px;
 }
 
 
@@ -385,5 +393,6 @@ li.no_bullet {
 
 /********** BEST IN PLACE ********/
 .best_in_place:hover {
-  color: #0d47a1;
+  color: #1976d2;
+  cursor: pointer;
 }

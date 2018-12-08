@@ -18,6 +18,7 @@
         <th>Officer</th>
         <th>Rank</th>
         <th><%= "# Current \nAssignments".gsub(/\n/, '<br/>').html_safe %></th>
+        <th>Options</th>
       </thead>
       <% for officer in @unit_officers %>
         <tr>
@@ -25,13 +26,25 @@
           <td><%= officer.rank %></td>
           <td><%= officer.assignments.current.count %></td>
 
-          <% if can? :edit, officer %>
-            <td class="align_center">
+          <td>
+            <% if can? :edit, officer %>
               <%= link_to edit_officer_path(officer) do %>
+                <span class="tooltipped" data-position="right" data-tooltip="Edit officer">
                 <i class="material-icons">edit</i>
+                </span>
               <% end %>
-            </td>
-          <% end %>
+            <% end %>
+            &nbsp;
+
+            <% if can? :new, Assignment %>
+              <%= link_to new_assignment_path(officer_id: officer.id, from: "dashboard") do %>
+                <span class="tooltipped" data-position="right" data-tooltip="Add assignment">
+                <i class="material-icons">add</i>
+                </span>
+              <% end %>
+            <% end %>
+           </td>
+
         </tr>
       <% end %>
     </table>
