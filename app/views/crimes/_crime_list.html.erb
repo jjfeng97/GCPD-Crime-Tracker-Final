@@ -16,7 +16,12 @@
     </thead>
     <% for crime in crimes %>
       <tr>
-        <td><span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, crime), crime, :name, as: :input %><%# crime.name %></span></td>
+        <td>
+          <% if can? :edit, crime %>
+            <span class="tooltipped" data-position="right" data-tooltip="Click to edit"><%= best_in_place_if (can? :edit, crime), crime, :name, as: :input %><%# crime.name %></span></td>
+          <% else %>
+            <%= crime.name %>
+          <% end %>
 
         <td>
           <% if can? :edit, crime %>

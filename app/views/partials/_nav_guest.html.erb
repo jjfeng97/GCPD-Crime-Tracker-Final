@@ -1,5 +1,13 @@
 <nav id="nav">
   <div class="container">
+  	<ul class="left hide-on-small-and-down">
+  	  <li><%= link_to 'Home', home_path, class: "#{'active'if current_page?(home_path)}" %></li>
+  	  <li><%= link_to 'About', about_path, class: "#{'active'if current_page?(about_path)}" %></li>
+  	  <li><%= link_to 'Contact', contact_path, class: "#{'active'if current_page?(contact_path)}" %></li>
+  	  <li><%= link_to 'Privacy', privacy_path, class: "#{'active'if current_page?(privacy_path)}" %></li>
+      <li><%= link_to 'Crimes', crimes_path, class: "#{'active'if current_page?(crimes_path)}" %></li>
+  	</ul>
+
     <ul class="right">
       <li><%= link_to 'Login', login_path %></li>
     </ul>
