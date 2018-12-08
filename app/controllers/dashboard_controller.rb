@@ -14,9 +14,8 @@ class DashboardController < ApplicationController
 
     elsif current_user.role == "commish"
       @units = Unit.active.paginate(page: params[:page]).per_page(5)
-    	@recent_investigations = Investigation.is_open.where(['date_opened > ?', 30.days.ago]).chronological.to_a.reverse
-    	@recent_assignments = Assignment.current.where(['start_date > ?', 30.days.ago]).chronological.to_a.reverse
-    	@recent_suspects = Suspect.current.where(['added_on > ?', 30.days.ago]).chronological.to_a.reverse
+    	@recent_investigations = Investigation.is_open.chronological.to_a.reverse.take(5)
+    	@recent_suspects = Suspect.current.chronological.to_a.reverse.take(5)
     	@popular_crimes = CrimeInvestigation.select("crime_id, count(*) as total_count").order("total_count").group("crime_id").to_a.reverse[0,5]
     	@busy_officers = Assignment.current.select("officer_id, count(*) as total_count").order("total_count").group("officer_id").to_a.reverse[0,5]
     	@big_investigations = Assignment.current.select("investigation_id, count(*) as total_count").order("total_count").group("investigation_id").to_a.reverse[0,5]

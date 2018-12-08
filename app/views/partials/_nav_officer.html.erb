@@ -4,11 +4,11 @@
       <%= image_tag 'small_dashboard.png', class: 'img_left_nav' %>
     <% end %>
     <ul class="left hide-on-small-and-down">
-      <li><%= link_to 'My Account', officer_path(current_user.officer) %></li>
-      <li><%= link_to 'Investigations', investigations_path %></li>
-      <li><%= link_to 'Criminals', criminals_path %></li>
-      <li><%= link_to 'Units', units_path %></li>
-      <li><%= link_to 'Crimes', crimes_path %></li>
+      <li><%= link_to 'My Account', officer_path(current_user.officer), class: "#{'active'if current_page?(officer_path(current_user.officer))}" %></li>
+      <li><%= link_to 'Investigations', investigations_path, class: "#{'active'if current_page?(investigations_path)}" %></li>
+      <li><%= link_to 'Criminals', criminals_path, class: "#{'active'if current_page?(criminals_path)}" %></li>
+      <li><%= link_to 'Units', units_path, class: "#{'active'if current_page?(units_path)}" %></li>
+      <li><%= link_to 'Crimes', crimes_path, class: "#{'active'if current_page?(crimes_path)}" %></li>
 
     </ul>
     <ul class="right">
