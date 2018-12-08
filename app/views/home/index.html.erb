@@ -17,6 +17,16 @@
           of this great software.  Hopefully we will be able to 
           do a better job fighting crime so that the Dark Knight's 
           services are no longer needed.</p>
+
+        <div class="center">
+          <% if current_user.nil? %>
+            </br>
+            <%= link_to(login_path, class: "waves-effect waves-light btn") do %>
+              <strong>Log In</strong>
+            <% end %>
+          <% end %>
+        </div>
+
       </div>
     </div>
   </div>
