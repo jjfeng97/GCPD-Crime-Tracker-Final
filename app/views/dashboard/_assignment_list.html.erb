@@ -27,17 +27,6 @@
                   </span>
                 <% end %>
 
-                <% if @officer.active %>
-                  <% if can? :new, Suspect %>
-                    <span class="tooltipped" data-position="bottom" data-tooltip="Add a new suspect"}>
-                      <%= link_to(new_suspect_path(investigation_id: assignment.investigation.id, from: "dashboard"), class: 'btn-floating waves-effect waves-light') do %>
-                        <i class="material-icons">person_add</i>
-                      <% end %>
-                      &nbsp;&nbsp;
-                    </span>
-                  <% end %>
-                <% end %>
-
                 <span class="tooltipped" data-position="bottom" data-tooltip="See all notes"}>
                   <%= link_to(investigation_notes_path(investigation_id: assignment.investigation.id), class: 'btn-floating waves-effect waves-light') do %>
                     <i class="material-icons">arrow_forward</i>
@@ -57,7 +46,15 @@
                   </thead>
                   <% for note in assignment.investigation.investigation_notes %>
                     <tr>
-                      <td><%= note.content %></td>
+                      <td>
+                        <% if can? :destroy, InvestigationNote and note.officer == current_user.officer %>
+                          <%= link_to(investigation_note_path(note), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this note?' }) do %>
+                            <span class="tooltipped" data-position="left" data-tooltip="Delete note">x&nbsp;&nbsp;</span>
+                          <% end %>
+                        <% end %>
+                        <%= note.content %>
+                      </td>
+
                       <td><%= note.officer.proper_name %></td>
                       <td><%= note.date.strftime("%m/%d/%y") %></td>
 
@@ -74,6 +71,48 @@
 
               <% else %>
                 <h5>There are no notes for this case currently.</h5>
+              <% end %>
+
+
+              </br></br>
+              <div class="row officer_options">
+                <% if @officer.active %>
+                  <% if can? :new, Suspect %>
+                    <span class="tooltipped" data-position="bottom" data-tooltip="Add a new suspect"}>
+                      <%= link_to(new_suspect_path(investigation_id: assignment.investigation.id, from: "dashboard"), class: 'btn-floating waves-effect waves-light') do %>
+                        <i class="material-icons">person_add</i>
+                      <% end %>
+                      &nbsp;&nbsp;
+                    </span>
+                  <% end %>
+                <% end %>
+              </div>
+
+              <% unless assignment.investigation.suspects.empty? %>
+                <h5><%= "Current Suspects for #{assignment.investigation.title}:" %></h5>
+                <table class="striped highlight">
+                  <thead>
+                    <th>Suspect</th>
+                    <th>Date Added</th>
+                  </thead>
+                  <% for suspect in assignment.investigation.suspects %>
+                    <tr>
+                      <td>
+                        <% if can? :terminate, suspect %>
+                          <%= link_to(terminate_suspect_path(suspect, from: "investigation"), class: 'remove', method: :patch, data: { confirm: 'Are you sure you wish to remove this suspect from the investigation?' }) do %>
+                            <span class="tooltipped" data-position="left" data-tooltip="Remove suspect">x&nbsp;&nbsp;</span>
+                          <% end %>
+                        <% end %>
+                        &nbsp;<%= link_to suspect.criminal.name, criminal_path(suspect.criminal) %>
+                      </td>
+                      
+                      <td><%= suspect.added_on.strftime("%m/%d/%y") %></td>
+                    </tr>
+                  <% end %>
+                </table>
+
+              <% else %>
+                <h5>There are no suspects for this case currently.</h5>
               <% end %>
 
             </span></div>

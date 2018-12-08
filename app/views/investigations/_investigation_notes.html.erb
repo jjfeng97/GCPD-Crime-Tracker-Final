@@ -15,7 +15,7 @@
                 <!-- only show option to destroy note if officer was the one who wrote it -->
                 <% if can? :destroy, InvestigationNote and note.officer == current_user.officer %>
                   <%= link_to(investigation_note_path(note), method: :delete, class: 'remove', data: { confirm: 'Are you sure you wish to delete this note?' }) do %>
-                    x&nbsp;&nbsp;
+                    <span class="tooltipped" data-position="left" data-tooltip="Delete note">x&nbsp;&nbsp;</span>
                   <% end %>
                 <% end %>
                 &nbsp;<%= note.content %>
