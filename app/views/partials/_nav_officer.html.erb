@@ -3,7 +3,7 @@
     <%= link_to dashboard_path do%>
       <%= image_tag 'small_dashboard.png', class: 'img_left_nav' %>
     <% end %>
-    <ul class="left hide-on-med-and-down">
+    <ul class="left hide-on-small-and-down">
       <li><%= link_to 'My Account', officer_path(current_user.officer) %></li>
       <li><%= link_to 'Investigations', investigations_path %></li>
       <li><%= link_to 'Criminals', criminals_path %></li>

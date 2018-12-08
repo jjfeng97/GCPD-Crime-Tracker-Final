@@ -23,7 +23,7 @@
         </td>
 
         <td>
-          <%= note.date %>
+          <%= note.date.strftime("%m/%d/%y") %>
         </td>
 
         <% if can? :edit, note %>

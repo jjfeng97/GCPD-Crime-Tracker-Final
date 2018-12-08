@@ -10,7 +10,7 @@
                 <%= assignment.investigation.title %> (started on <%= assignment.start_date.strftime("%m/%d/%y") %>)
                 &nbsp;&nbsp;
                 <%= link_to investigation_path(assignment.investigation) do %>
-                  <i class="material-icons">arrow_forward</i>
+                  <span class="tooltipped" data-position="right" data-tooltip="Go to investigation"}><i class="material-icons">arrow_forward</i></span>
                 <% end %>
             </div>
 
@@ -38,8 +38,8 @@
                   <% end %>
                 <% end %>
 
-                <span class="tooltipped" data-position="bottom" data-tooltip="Go to investigation"}>
-                  <%= link_to(investigation_path(assignment.investigation), class: 'btn-floating waves-effect waves-light') do %>
+                <span class="tooltipped" data-position="bottom" data-tooltip="See all notes"}>
+                  <%= link_to(investigation_notes_path(investigation_id: assignment.investigation.id), class: 'btn-floating waves-effect waves-light') do %>
                     <i class="material-icons">arrow_forward</i>
                   <% end %>
                   &nbsp;&nbsp;
